@@ -161,7 +161,7 @@ export const WishesSection: React.FC<WishesSectionProps> = ({
                   </div>
                 </div>
 
-                <p className="text-xs sm:text-sm font-sans text-pink-100/90 leading-relaxed pl-10">
+                <p className="text-xs sm:text-sm font-sans text-pink-100/90 leading-relaxed pl-10 break-words">
                   {wish.message}
                 </p>
               </div>

@@ -269,7 +269,7 @@ export default function App() {
       />
 
       {/* Mobile Screen Container: Elegantly framed for smartphone proportions on desktop */}
-      <main className="relative w-full max-w-[440px] sm:max-w-[460px] md:max-w-[480px] min-h-screen bg-[#0b080e] sm:shadow-[0_0_90px_rgba(0,0,0,0.95)] sm:border-x sm:border-[#ff2d87]/20 flex flex-col z-10">
+      <main className="relative w-full max-w-[440px] sm:max-w-[460px] md:max-w-[480px] min-h-screen bg-[#0b080e] sm:shadow-[0_0_90px_rgba(0,0,0,0.95)] sm:border-x sm:border-[#ff2d87]/20 flex flex-col z-10 overflow-x-hidden">
         {/* Minimalist Hero Section with perfectly centered photo */}
         <HeroSection />
 

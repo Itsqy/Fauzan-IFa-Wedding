@@ -124,26 +124,26 @@ export const GiftSection: React.FC = () => {
           })}
         </div>
 
-        {/* Physical Gift Delivery Address & WhatsApp Confirmation Strip */}
-        <div className="p-7 sm:p-9 rounded-3xl bg-[#170f24]/80 border border-[#ff2d87]/30 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
-          <div className="flex items-start gap-4">
-            <div className="w-12 h-12 rounded-2xl bg-[#ff2d87]/20 border border-[#ff2d87]/40 flex items-center justify-center shrink-0 neon-glow-pink-sm">
+        {/* Physical Gift Delivery Address & WhatsApp Confirmation Box */}
+        <div className="p-6 sm:p-7 rounded-3xl bg-[#170f24]/90 backdrop-blur-md border border-[#ff2d87]/30 flex flex-col gap-5 shadow-xl text-center">
+          <div className="flex flex-col items-center gap-3">
+            <div className="w-12 h-12 rounded-2xl bg-[#ff2d87]/20 border border-[#ff2d87]/40 flex items-center justify-center shrink-0 shadow-[0_0_20px_rgba(255,45,135,0.3)]">
               <MapPin className="w-6 h-6 text-[#ff2d87]" />
             </div>
             <div>
-              <h4 className="text-lg font-serif font-bold text-white mb-1">
+              <h4 className="text-base sm:text-lg font-serif font-bold text-white mb-1.5">
                 Kirim Kado Fisik / Parsel
               </h4>
-              <p className="text-xs sm:text-sm font-sans text-pink-100/80 leading-relaxed max-w-xl">
+              <p className="text-xs sm:text-sm font-sans text-pink-100/80 leading-relaxed max-w-sm mx-auto">
                 {giftAddress}
               </p>
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto shrink-0">
+          <div className="flex flex-col gap-2.5 w-full">
             <button
               onClick={handleCopyAddress}
-              className="w-full sm:w-auto px-5 py-2.5 rounded-full bg-[#241334] hover:bg-[#ff2d87] border border-[#ff2d87]/40 text-white text-xs sm:text-sm font-sans font-medium transition-all flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full py-2.5 px-4 rounded-full bg-[#241334] hover:bg-[#ff2d87] border border-[#ff2d87]/40 text-white text-xs font-sans font-medium transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-95 shadow-sm"
             >
               {copiedAddress ? (
                 <>
@@ -162,7 +162,7 @@ export const GiftSection: React.FC = () => {
               href="https://wa.me/6281298765432?text=Assalamu%27alaikum%20Fauzan%20%26%20Ifa%2C%20alhamdulillah%20kami%20telah%20mengirimkan%20tanda%20kasih%2Fkado%20pernikahan.%20Semoga%20berkah%20dan%20menjadi%20keluarga%20sakinah."
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto px-5 py-2.5 rounded-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-xs sm:text-sm font-sans font-medium transition-all flex items-center justify-center gap-2 shadow-md hover:shadow-lg"
+              className="w-full py-2.5 px-4 rounded-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-xs font-sans font-medium transition-all flex items-center justify-center gap-2 shadow-md hover:shadow-lg active:scale-95"
             >
               <Send className="w-4 h-4" />
               <span>Konfirmasi via WhatsApp</span>
