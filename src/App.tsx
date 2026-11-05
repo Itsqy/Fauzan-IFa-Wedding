@@ -91,10 +91,7 @@ export default function App() {
   // Warm up & pre-decode the hero background image off-thread so there is zero jank when envelope opens
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const heroSrc =
-        window.innerWidth <= 640
-          ? '/assets/aistudio/fauzan_ifa998_hero_mobile.webp'
-          : '/assets/aistudio/fauzan_ifa998_hero.webp';
+      const heroSrc = '/assets/gallery/fauzan_ifa_1.jpg';
       const img = new Image();
       img.src = heroSrc;
       if (img.decode) {
@@ -103,28 +100,49 @@ export default function App() {
     }
   }, []);
 
-  // Handle Hash Navigation (scroll to anchor)
+  // Handle Hash Navigation (scroll to anchor) only after envelope is opened
   useEffect(() => {
+    if (isEnvelopeOpen) return;
     const handleHash = () => {
       if (typeof window !== 'undefined' && window.location.hash) {
         const el = document.querySelector(window.location.hash);
         if (el) {
-          el.scrollIntoView();
+          el.scrollIntoView({ behavior: 'smooth' });
         }
       }
     };
-    // Delay slightly to ensure children are mounted
-    const timer = setTimeout(handleHash, 100);
     window.addEventListener('hashchange', handleHash);
     return () => {
-      clearTimeout(timer);
       window.removeEventListener('hashchange', handleHash);
     };
-  }, []);
+  }, [isEnvelopeOpen]);
 
-  // Handle Opening Envelope: audio is pre-trimmed to start directly at Chorus ("Kasih, andai anganku bersuara...")
+  // Handle Opening Envelope: resets viewport to first page (#hero) and starts audio
   const handleOpenEnvelope = () => {
+    // Unlock body scroll and guarantee viewport is strictly at top (halaman awal)
+    document.body.style.overflow = '';
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+
     setIsEnvelopeOpen(false);
+
+    // Clear any leftover hash anchor in URL so it doesn't jump away from the first page
+    if (typeof window !== 'undefined' && window.location.hash) {
+      try {
+        window.history.replaceState(null, '', window.location.pathname + window.location.search);
+      } catch {
+        // Fallback
+      }
+    }
+
+    // Double-check top positioning after modal unmounts
+    requestAnimationFrame(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    });
+
     if (audioRef.current) {
       try {
         audioRef.current.currentTime = 0;

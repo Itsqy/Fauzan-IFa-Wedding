@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { triggerButterflyBurst } from './NeonButterflyCanvas';
 
 interface OpeningEnvelopeModalProps {
@@ -12,11 +12,28 @@ export const OpeningEnvelopeModal: React.FC<OpeningEnvelopeModalProps> = ({
 }) => {
   const [isOpening, setIsOpening] = useState(false);
 
+  // Lock scroll and reset to top while the envelope modal is displayed
+  useEffect(() => {
+    if (isOpen) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      window.scrollTo(0, 0);
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   const handleClickEnvelope = (e: React.MouseEvent<HTMLDivElement>) => {
     if (isOpening) return;
     setIsOpening(true);
+
+    // Immediately guarantee scroll position is at the very top (Hero Section)
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
 
     // Compute envelope center position for precise butterfly emission
     const rect = e.currentTarget.getBoundingClientRect();
@@ -33,6 +50,9 @@ export const OpeningEnvelopeModal: React.FC<OpeningEnvelopeModalProps> = ({
 
     // Smooth opening transition before launching audio and revealing main page
     setTimeout(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
       onOpen();
     }, 700);
   };
