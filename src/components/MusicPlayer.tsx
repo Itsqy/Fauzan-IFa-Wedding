@@ -8,7 +8,7 @@ interface MusicPlayerProps {
 
 export const MusicPlayer: React.FC<MusicPlayerProps> = ({ isPlaying, onTogglePlay }) => {
   return (
-    <div className="fixed bottom-6 left-6 z-40 flex items-center gap-2.5 group">
+    <div className="fixed bottom-5 left-4 sm:bottom-6 sm:left-6 z-40 flex items-center gap-2.5 group">
       <button
         onClick={onTogglePlay}
         className={`w-11 h-11 md:w-12 md:h-12 rounded-full flex items-center justify-center backdrop-blur-md border transition-all duration-300 shadow-xl cursor-pointer ${
