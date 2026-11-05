@@ -1,19 +1,51 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ChevronDown, Sparkles } from 'lucide-react';
 
+// Ultra-compact blur placeholder of Fauzan & Ifa (instant 0ms ambient background)
+const HERO_BLUR_PLACEHOLDER =
+  'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAASABIAAD/4QBMRXhpZgAATU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAFKADAAQAAAABAAAAHgAAAAD/wAARCAAeABQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9sAQwACAgICAgIDAgIDBQMDAwUGBQUFBQYIBgYGBgYICggICAgICAoKCgoKCgoKDAwMDAwMDg4ODg4PDw8PDw8PDw8P/9sAQwECAgIEBAQHBAQHEAsJCxAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQ/90ABAAC/9oADAMBAAIRAxEAPwD6nsNPXgAV09vpisoytc7qusL4b8O6hrzQG5NjC0giXrIw4VRjPU4HArz3Sfizeal8VvDvhL+0bbT7a/0xrqexlQef9o8zYVZ2wUG0ZiXAZiSTkCvLq1owaT3Z7FGhOd3HoeyvosbNnbTf7Dj/ALteV/F/9pX4efBjxPb+FfFRc3lxaJeDYeBHI7oM8HnMZryr/hvH4L/9Nvz/APsa10MrM//Q+kPFnjbQvANpYa/4huDb2ltOZztjaVnMKFlUInJO8rjrg4+tflxY/Ey10z4hz+I4RhNZnm1q1ecgXFxHes5ikaFXk2ukqkCMuCFGB1rx7xR8cfG3xQ8JxXviu6ecvqEnlxBz5MSiKSTaiY4HAXknoD1rkfh/cN/beo3Ekjy/Z3S3hD4IR0O8YznCDHAHQnpXgY2KfM5H0eX4l05px+Z0P7b3jefx38fL69kR7R7DTtNtXhfhopPs6zSoRk4KySsDz2r5FxL/AM9f1rp/HniHVPF3jHVvFOvztc6jq05uZ5CAN0kgBPAAAHoAOBXJfJ717EIqyPKnOzZ//9k=';
+
 export const HeroSection: React.FC = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    // If the image was preloaded in HTML head or already in browser cache
+    if (imgRef.current?.complete) {
+      setIsLoaded(true);
+    }
+  }, []);
+
   return (
     <section
       id="hero"
-      className="relative min-h-[100dvh] w-full flex flex-col justify-between items-center overflow-hidden px-6 pt-16 pb-8 select-none"
+      className="relative min-h-[100dvh] w-full flex flex-col justify-between items-center overflow-hidden px-6 pt-10 sm:pt-12 pb-8 select-none"
     >
-      {/* Background Photo: Positioned at object-[center_38%] so the couple's faces and lace umbrella are centered & unobstructed */}
-      <div className="absolute inset-0 z-0">
+      {/* Background Photo: Positioned so the couple's faces are centered & unobstructed */}
+      <div className="absolute inset-0 z-0 bg-[#0e0915] overflow-hidden">
+        {/* Instant Blur Placeholder: Prevents black voids or stutter while image arrives */}
         <img
-          src="/assets/aistudio/fauzan_ifa998_4aafa8ec.JPG"
-          alt="The Wedding of Fauzan & Ifa"
-          className="w-full h-full object-cover object-[center_38%] filter brightness-[0.98] contrast-[1.02]"
+          src={HERO_BLUR_PLACEHOLDER}
+          alt=""
+          aria-hidden="true"
+          className={`absolute inset-0 w-full h-full object-cover object-[center_28%] filter blur-xl scale-110 pointer-events-none transition-opacity duration-700 ease-out ${
+            isLoaded ? 'opacity-0' : 'opacity-100'
+          }`}
         />
+
+        {/* High-Performance Wedding Hero Background */}
+        <img
+          ref={imgRef}
+          src="/assets/gallery/fauzan_ifa_1.jpg"
+          alt="The Wedding of Fauzan & Ifa"
+          fetchPriority="high"
+          decoding="async"
+          onLoad={() => setIsLoaded(true)}
+          className={`w-full h-full object-cover object-[center_28%] filter brightness-[0.98] contrast-[1.02] transition-opacity duration-700 ease-out ${
+            isLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
+        />
+
         {/* Soft, delicate scrims that highlight text without eclipsing their faces */}
         <div className="absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-[#0b080e]/90 via-[#0b080e]/45 to-transparent pointer-events-none" />
         <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-[#0b080e] via-[#0b080e]/60 to-transparent pointer-events-none" />

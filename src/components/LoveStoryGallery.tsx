@@ -10,27 +10,39 @@ interface GalleryPhoto {
 
 const GALLERY_PHOTOS: GalleryPhoto[] = [
   {
-    id: 'photo-standing',
-    url: '/assets/gallery/fauzan_ifa_standing.jpg',
-    alt: 'Fauzan & Ifa - Busana Adat',
+    id: 'photo-1',
+    url: '/assets/gallery/fauzan_ifa_1.jpg',
+    alt: 'Fauzan & Ifa - Potret Senyum Hangat',
     aspectClass: 'col-span-1 aspect-[3/4]',
   },
   {
-    id: 'photo-umbrella',
-    url: '/assets/aistudio/fauzan_ifa998_4aafa8ec.JPG',
-    alt: 'Fauzan & Ifa - Payung Renda',
+    id: 'photo-4',
+    url: '/assets/gallery/fauzan_ifa_4.jpg',
+    alt: 'Fauzan & Ifa - Sorot Cahaya Studio',
     aspectClass: 'col-span-1 aspect-[3/4]',
   },
   {
-    id: 'photo-chair',
-    url: '/assets/gallery/fauzan_ifa_sitting_chair.jpg',
-    alt: 'Fauzan & Ifa - Dekorasi Bunga Klasik',
+    id: 'photo-2',
+    url: '/assets/gallery/fauzan_ifa_2.jpg',
+    alt: 'Fauzan & Ifa - Dekorasi Bunga & Kursi Klasik',
     aspectClass: 'col-span-2 aspect-[16/11]',
   },
   {
-    id: 'photo-floor',
-    url: '/assets/gallery/fauzan_ifa_sitting_floor.jpg',
-    alt: 'Fauzan & Ifa - Potret Anggun',
+    id: 'photo-5',
+    url: '/assets/gallery/fauzan_ifa_5.jpg',
+    alt: 'Fauzan & Ifa - Busana Adat Klasik',
+    aspectClass: 'col-span-1 aspect-[3/4]',
+  },
+  {
+    id: 'photo-6',
+    url: '/assets/gallery/fauzan_ifa_6.jpg',
+    alt: 'Fauzan & Ifa - Set Studio Karpet Klasik',
+    aspectClass: 'col-span-1 aspect-[3/4]',
+  },
+  {
+    id: 'photo-3',
+    url: '/assets/gallery/fauzan_ifa_3.jpg',
+    alt: 'Fauzan & Ifa - Pose Anggun Duduk Lesehan',
     aspectClass: 'col-span-2 aspect-[16/11]',
   },
 ];
@@ -75,7 +87,7 @@ export const LoveStoryGallery: React.FC = () => {
 
       <div className="w-full relative z-10">
         {/* Minimalist Section Header */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-7">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#1b1028] border border-[#ff2d87]/30 text-pink-300 text-[10px] uppercase tracking-[0.25em] font-sans mb-2">
             <Camera className="w-3 h-3 text-[#ff2d87]" />
             <span>Momen Bahagia</span>
@@ -83,10 +95,10 @@ export const LoveStoryGallery: React.FC = () => {
           <h2 className="text-2xl sm:text-3xl font-serif font-bold text-white tracking-tight">
             Galeri Foto
           </h2>
-          <div className="w-16 h-[1px] bg-gradient-to-r from-transparent via-[#ff2d87] to-transparent mx-auto mt-2.5" />
+          <div className="w-16 h-[1px] bg-gradient-to-r from-transparent via-[#ff2d87] to-transparent mx-auto mt-2" />
         </div>
 
-        {/* Minimalist Photo Grid: 2 Portrait on top, 2 Landscape full width */}
+        {/* Minimalist Photo Grid (6 Photos: 4 Portrait & 2 Landscape in harmonic rhythm) */}
         <div className="grid grid-cols-2 gap-3 sm:gap-3.5">
           {GALLERY_PHOTOS.map((photo, index) => (
             <div
@@ -166,8 +178,8 @@ export const LoveStoryGallery: React.FC = () => {
               />
             </div>
 
-            {/* Minimalist Photo Counter */}
-            <div className="mt-3.5 flex items-center gap-2">
+            {/* Minimalist Photo Indicator Dots */}
+            <div className="mt-3.5 flex items-center gap-1.5">
               {GALLERY_PHOTOS.map((_, idx) => (
                 <button
                   key={idx}
@@ -181,7 +193,7 @@ export const LoveStoryGallery: React.FC = () => {
                 />
               ))}
             </div>
-            <span className="text-[11px] font-sans text-pink-200/60 mt-1.5">
+            <span className="text-[11px] font-sans text-pink-200/60 mt-1">
               {selectedPhotoIndex + 1} dari {GALLERY_PHOTOS.length}
             </span>
           </div>

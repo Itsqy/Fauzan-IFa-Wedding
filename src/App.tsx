@@ -5,7 +5,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { Sparkles, Calendar, Heart } from 'lucide-react';
-import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { ScheduleSection } from './components/ScheduleSection';
 import { CoupleSection } from './components/CoupleSection';
@@ -88,6 +87,21 @@ export default function App() {
       // Ignore
     }
   }, [wishes]);
+
+  // Warm up & pre-decode the hero background image off-thread so there is zero jank when envelope opens
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const heroSrc =
+        window.innerWidth <= 640
+          ? '/assets/aistudio/fauzan_ifa998_hero_mobile.webp'
+          : '/assets/aistudio/fauzan_ifa998_hero.webp';
+      const img = new Image();
+      img.src = heroSrc;
+      if (img.decode) {
+        img.decode().catch(() => {});
+      }
+    }
+  }, []);
 
   // Handle Hash Navigation (scroll to anchor)
   useEffect(() => {
@@ -238,9 +252,6 @@ export default function App() {
 
       {/* Mobile Screen Container: Exactly framed for smartphone proportions (max-w-[440px]) on laptop/desktop */}
       <main className="relative w-full max-w-[440px] min-h-screen bg-[#0b080e] sm:shadow-[0_0_90px_rgba(0,0,0,0.95)] sm:border-x sm:border-[#ff2d87]/20 flex flex-col z-10">
-        {/* Top Bar Navigation constrained to the mobile view */}
-        <Navbar onOpenRSVP={() => setIsRSVPModalOpen(true)} />
-
         {/* Minimalist Hero Section with perfectly centered photo */}
         <HeroSection />
 

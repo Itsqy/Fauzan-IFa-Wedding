@@ -17,9 +17,11 @@ export const CoverScreen: React.FC<CoverScreenProps> = ({
       {/* Background Image: The uploaded portrait of Fauzan & Ifa */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/assets/aistudio/fauzan_ifa998_4aafa8ec.JPG"
+          src="/assets/gallery/fauzan_ifa_1.jpg"
           alt="Fauzan & Ifa"
-          className="w-full h-full object-cover object-center filter brightness-[0.72] contrast-[1.08] scale-105 transition-transform duration-1000 ease-out"
+          fetchPriority="high"
+          decoding="async"
+          className="w-full h-full object-cover object-[center_28%] filter brightness-[0.72] contrast-[1.08] scale-105 transition-transform duration-1000 ease-out"
         />
         {/* Atmospheric Dark & Rose Gradient Overlays */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#0b080e] via-[#0d0914]/60 to-[#0b080e]/70" />
