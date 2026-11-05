@@ -87,37 +87,37 @@ export const ScheduleSection: React.FC = () => {
         </div>
 
         {/* Live Countdown Clock */}
-        <div className="mb-12 max-w-lg mx-auto">
+        <div className="mb-10 max-w-lg mx-auto">
           <p className="text-xs font-sans tracking-[0.25em] uppercase text-pink-300/80 mb-3 text-center">
             Menghitung Hari Menuju Akad &amp; Resepsi
           </p>
-          <div className="grid grid-cols-4 gap-2.5 sm:gap-4">
-            <div className="px-3 py-3 rounded-2xl bg-[#160f22]/90 border border-[#ff2d87]/30 text-center shadow-lg">
-              <span className="block text-2xl sm:text-4xl font-serif font-bold text-white tabular-nums neon-text-pink">
+          <div className="grid grid-cols-4 gap-2 sm:gap-3">
+            <div className="px-2 sm:px-3 py-2.5 sm:py-3 rounded-2xl bg-[#160f22]/90 border border-[#ff2d87]/30 text-center shadow-lg">
+              <span className="block text-2xl sm:text-3xl font-serif font-bold text-white tabular-nums neon-text-pink">
                 {String(timeLeft.days).padStart(2, '0')}
               </span>
               <span className="text-[10px] sm:text-xs font-sans tracking-wider uppercase text-pink-300/80">
                 Hari
               </span>
             </div>
-            <div className="px-3 py-3 rounded-2xl bg-[#160f22]/90 border border-[#ff2d87]/30 text-center shadow-lg">
-              <span className="block text-2xl sm:text-4xl font-serif font-bold text-white tabular-nums neon-text-pink">
+            <div className="px-2 sm:px-3 py-2.5 sm:py-3 rounded-2xl bg-[#160f22]/90 border border-[#ff2d87]/30 text-center shadow-lg">
+              <span className="block text-2xl sm:text-3xl font-serif font-bold text-white tabular-nums neon-text-pink">
                 {String(timeLeft.hours).padStart(2, '0')}
               </span>
               <span className="text-[10px] sm:text-xs font-sans tracking-wider uppercase text-pink-300/80">
                 Jam
               </span>
             </div>
-            <div className="px-3 py-3 rounded-2xl bg-[#160f22]/90 border border-[#ff2d87]/30 text-center shadow-lg">
-              <span className="block text-2xl sm:text-4xl font-serif font-bold text-white tabular-nums neon-text-pink">
+            <div className="px-2 sm:px-3 py-2.5 sm:py-3 rounded-2xl bg-[#160f22]/90 border border-[#ff2d87]/30 text-center shadow-lg">
+              <span className="block text-2xl sm:text-3xl font-serif font-bold text-white tabular-nums neon-text-pink">
                 {String(timeLeft.minutes).padStart(2, '0')}
               </span>
               <span className="text-[10px] sm:text-xs font-sans tracking-wider uppercase text-pink-300/80">
                 Menit
               </span>
             </div>
-            <div className="px-3 py-3 rounded-2xl bg-[#160f22]/90 border border-[#ff2d87]/30 text-center shadow-lg">
-              <span className="block text-2xl sm:text-4xl font-serif font-bold text-white tabular-nums neon-text-pink">
+            <div className="px-2 sm:px-3 py-2.5 sm:py-3 rounded-2xl bg-[#160f22]/90 border border-[#ff2d87]/30 text-center shadow-lg">
+              <span className="block text-2xl sm:text-3xl font-serif font-bold text-white tabular-nums neon-text-pink">
                 {String(timeLeft.seconds).padStart(2, '0')}
               </span>
               <span className="text-[10px] sm:text-xs font-sans tracking-wider uppercase text-pink-300/80">
@@ -127,10 +127,10 @@ export const ScheduleSection: React.FC = () => {
           </div>
         </div>
 
-        {/* 2 Event Cards (Mobile Optimized) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        {/* 2 Event Cards (Stacked for Clean Phone / Invitation View) */}
+        <div className="grid grid-cols-1 gap-6 mb-8">
           {/* Akad Nikah Card */}
-          <div className="p-6 sm:p-8 rounded-3xl bg-[#160f22]/90 backdrop-blur-md border border-[#ff2d87]/30 shadow-xl flex flex-col justify-between">
+          <div className="p-6 sm:p-7 rounded-3xl bg-[#160f22]/90 backdrop-blur-md border border-[#ff2d87]/30 shadow-xl flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between mb-4">
                 <span className="px-3 py-1 rounded-full bg-[#ff2d87]/15 border border-[#ff2d87]/40 text-[11px] font-sans font-medium text-pink-200 uppercase tracking-widest">
@@ -177,7 +177,7 @@ export const ScheduleSection: React.FC = () => {
           </div>
 
           {/* Resepsi Card */}
-          <div className="p-6 sm:p-8 rounded-3xl bg-[#160f22]/90 backdrop-blur-md border border-[#ff2d87]/30 shadow-xl flex flex-col justify-between">
+          <div className="p-6 sm:p-7 rounded-3xl bg-[#160f22]/90 backdrop-blur-md border border-[#ff2d87]/30 shadow-xl flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between mb-4">
                 <span className="px-3 py-1 rounded-full bg-[#ff2d87]/15 border border-[#ff2d87]/40 text-[11px] font-sans font-medium text-pink-200 uppercase tracking-widest">
@@ -224,23 +224,23 @@ export const ScheduleSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Action Strip: Maps & Calendar */}
-        <div className="p-6 rounded-3xl bg-[#160f22]/80 border border-[#ff2d87]/20 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg text-center sm:text-left">
+        {/* Action Strip: Maps & Calendar (Never overflows container) */}
+        <div className="p-5 sm:p-6 rounded-3xl bg-[#160f22]/90 backdrop-blur-md border border-[#ff2d87]/25 shadow-lg flex flex-col gap-4 text-center">
           <div>
-            <h4 className="text-base font-serif font-bold text-white mb-0.5">
+            <h4 className="text-base sm:text-lg font-serif font-bold text-white mb-1">
               Lokasi &amp; Pengingat Kalender
             </h4>
-            <p className="text-xs font-sans text-pink-200/70">
+            <p className="text-xs font-sans text-pink-200/80 leading-relaxed max-w-sm mx-auto">
               Grand Sasana Kriya Ballroom, TMII, Cipayung, Jakarta Timur
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-2.5 w-full sm:w-auto shrink-0">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 w-full">
             <a
               href="https://maps.google.com/?q=Sasana+Kriya+Ballroom+TMII+Jakarta"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#20122e] hover:bg-[#ff2d87] text-white text-xs font-sans font-medium transition-all border border-[#ff2d87]/40 shadow-sm"
+              className="inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-full bg-[#20122e] hover:bg-[#ff2d87] text-white text-xs font-sans font-medium transition-all border border-[#ff2d87]/40 shadow-sm active:scale-95"
             >
               <MapPin className="w-3.5 h-3.5 text-[#ff2d87]" />
               <span>Buka Google Maps</span>
@@ -249,7 +249,7 @@ export const ScheduleSection: React.FC = () => {
 
             <button
               onClick={handleDownloadIcs}
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-gradient-to-r from-[#ff2d87] to-[#e60067] text-white text-xs font-sans font-medium transition-all shadow-[0_0_15px_rgba(255,45,135,0.5)] cursor-pointer"
+              className="inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-full bg-gradient-to-r from-[#ff2d87] to-[#e60067] text-white text-xs font-sans font-medium transition-all shadow-[0_0_15px_rgba(255,45,135,0.5)] cursor-pointer active:scale-95"
             >
               {calendarSaved ? (
                 <>

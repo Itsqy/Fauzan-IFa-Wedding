@@ -73,8 +73,8 @@ export const GiftSection: React.FC = () => {
           </p>
         </div>
 
-        {/* Bank Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        {/* Bank Cards Stack */}
+        <div className="grid grid-cols-1 gap-5 mb-10">
           {BANK_ACCOUNTS.map((account) => {
             const isCopied = copiedAccount === account.accountNumber;
             return (

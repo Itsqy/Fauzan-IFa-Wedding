@@ -47,18 +47,18 @@ export const WishesSection: React.FC<WishesSectionProps> = ({
         </div>
 
         {/* Big RSVP CTA Box with Butterfly Hover Trigger */}
-        <div className="p-8 sm:p-10 rounded-3xl bg-[#170e24]/90 backdrop-blur-md border border-[#ff2d87]/40 shadow-[0_0_35px_rgba(255,45,135,0.25)] text-center mb-12 flex flex-col items-center">
-          <h3 className="text-2xl font-serif font-bold text-white mb-2">
+        <div className="p-6 sm:p-8 rounded-3xl bg-[#170e24]/90 backdrop-blur-md border border-[#ff2d87]/40 shadow-[0_0_35px_rgba(255,45,135,0.25)] text-center mb-10 flex flex-col items-center">
+          <h3 className="text-xl sm:text-2xl font-serif font-bold text-white mb-2">
             Belum Mengisi Kehadiran?
           </h3>
-          <p className="text-xs sm:text-sm font-sans text-pink-200/80 max-w-md mb-6">
+          <p className="text-xs sm:text-sm font-sans text-pink-200/80 max-w-sm mb-5 leading-relaxed">
             Klik tombol RSVP di bawah untuk mengonfirmasi kehadiran serta mengirimkan doa terbaik Anda.
           </p>
 
           <button
             onClick={onOpenRSVP}
             onMouseEnter={onHoverRSVP}
-            className="group relative inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-4 rounded-full bg-gradient-to-r from-[#ff2d87] via-[#ff1493] to-[#e60067] text-white font-sans font-semibold text-sm sm:text-base tracking-wide shadow-[0_0_30px_rgba(255,45,135,0.7)] hover:shadow-[0_0_50px_rgba(255,45,135,1)] hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer border border-white/30"
+            className="group relative inline-flex items-center justify-center gap-2.5 px-6 sm:px-8 py-3.5 rounded-full bg-gradient-to-r from-[#ff2d87] via-[#ff1493] to-[#e60067] text-white font-sans font-semibold text-sm tracking-wide shadow-[0_0_25px_rgba(255,45,135,0.7)] hover:shadow-[0_0_40px_rgba(255,45,135,1)] hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer border border-white/30"
           >
             <Heart className="w-4 h-4 fill-white text-white group-hover:scale-125 transition-transform" />
             <span>Isi Buku Tamu &amp; RSVP</span>
@@ -66,20 +66,20 @@ export const WishesSection: React.FC<WishesSectionProps> = ({
 
           <div className="mt-3 flex items-center gap-1.5 text-xs text-pink-300/80 font-sans">
             <Sparkles className="w-3.5 h-3.5 text-[#ff2d87] animate-spin" style={{ animationDuration: '4s' }} />
-            <span>Hover tombol ini untuk melihat kawanan kupu-kupu neon pink terbang!</span>
+            <span>Arahkan kursor untuk melihat kawanan kupu-kupu!</span>
           </div>
         </div>
 
-        {/* Stats Strip & Filter Tabs */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-6">
-          <div className="flex items-center gap-3 text-xs font-sans text-pink-200/80">
-            <span>Total Doa: <strong className="text-white font-serif text-base">{wishes.length}</strong></span>
+        {/* Stats Strip & Filter Tabs (Neatly Centered) */}
+        <div className="flex flex-col gap-3.5 items-center mb-6">
+          <div className="flex items-center gap-2.5 text-xs font-sans text-pink-200/80">
+            <span>Total Doa: <strong className="text-white font-serif text-sm sm:text-base">{wishes.length}</strong></span>
             <span aria-hidden="true" className="text-pink-400">·</span>
-            <span>Konfirmasi Hadir: <strong className="text-[#ff70a6] font-serif text-base">{totalAttending}</strong></span>
+            <span>Konfirmasi Hadir: <strong className="text-[#ff70a6] font-serif text-sm sm:text-base">{totalAttending}</strong></span>
           </div>
 
           {/* Interactive Filter Tabs */}
-          <div className="flex items-center gap-1 p-1 bg-[#1a1127] rounded-xl border border-white/10">
+          <div className="flex items-center gap-1 p-1 bg-[#1a1127] rounded-xl border border-white/10 w-full sm:w-auto justify-center">
             <button
               onClick={() => setFilter('all')}
               className={`px-3 py-1.5 rounded-lg text-xs font-sans font-medium transition-colors cursor-pointer ${

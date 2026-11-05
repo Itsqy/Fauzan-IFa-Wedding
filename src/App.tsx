@@ -195,15 +195,15 @@ export default function App() {
         <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 w-[600px] h-[600px] bg-[#3a1548]/25 rounded-full blur-[160px]" />
       </div>
 
-      {/* Elegant Desktop Left Sidebar (Only visible on lg/xl screens) */}
-      <aside className="hidden lg:flex fixed left-8 xl:left-16 top-1/2 -translate-y-1/2 flex-col max-w-[280px] xl:max-w-xs z-20 select-none">
+      {/* Elegant Desktop Left Sidebar (Only visible on wide xl/2xl screens where space permits) */}
+      <aside className="hidden xl:flex fixed left-6 2xl:left-16 top-1/2 -translate-y-1/2 flex-col max-w-[260px] 2xl:max-w-xs z-20 select-none max-h-[85vh] overflow-y-auto">
         <div className="inline-flex items-center gap-2 text-pink-300 text-xs font-sans tracking-[0.3em] uppercase mb-3">
           <Sparkles className="w-3.5 h-3.5 text-[#ff2d87]" />
           <span>Undangan Pernikahan</span>
         </div>
 
-        <h1 className="font-ornate text-3xl xl:text-4xl text-white font-normal leading-snug mb-2">
-          Fauzan <span className="font-script text-[#ff2d87] text-3xl xl:text-4xl mx-0.5 neon-text-pink">&amp;</span> Ifa
+        <h1 className="font-ornate text-3xl 2xl:text-4xl text-white font-normal leading-snug mb-2">
+          Fauzan <span className="font-script text-[#ff2d87] text-3xl 2xl:text-4xl mx-0.5 neon-text-pink">&amp;</span> Ifa
         </h1>
 
         <div className="w-14 h-[1px] bg-[#ff2d87]/60 my-3.5" />
@@ -213,7 +213,7 @@ export default function App() {
           <span>Sabtu, 14 November 2026</span>
         </p>
 
-        <p className="font-serif italic text-xs xl:text-sm text-pink-100/70 leading-relaxed mb-6">
+        <p className="font-serif italic text-xs 2xl:text-sm text-pink-100/70 leading-relaxed mb-6">
           "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan-pasangan dari jenismu sendiri, supaya kamu merasa tenteram kepadanya, dan dijadikan-Nya di antaramu rasa kasih dan sayang."
           <span className="block not-italic font-sans text-[10px] text-pink-300/60 mt-2">
             — QS. Ar-Rum: 21
@@ -251,7 +251,7 @@ export default function App() {
       </aside>
 
       {/* Elegant Desktop Right Decorative Motif */}
-      <aside className="hidden xl:flex fixed right-10 top-1/2 -translate-y-1/2 flex-col items-center gap-3 z-20 pointer-events-none select-none text-center">
+      <aside className="hidden 2xl:flex fixed right-12 top-1/2 -translate-y-1/2 flex-col items-center gap-3 z-20 pointer-events-none select-none text-center">
         <div className="w-[1px] h-20 bg-gradient-to-b from-transparent via-[#ff2d87]/40 to-[#ff2d87]" />
         <span className="text-[10px] uppercase tracking-[0.3em] font-sans text-pink-200/50 [writing-mode:vertical-lr]">
           The Wedding of Fauzan &amp; Ifa
@@ -268,8 +268,8 @@ export default function App() {
         onOpen={handleOpenEnvelope}
       />
 
-      {/* Mobile Screen Container: Exactly framed for smartphone proportions (max-w-[440px]) on laptop/desktop */}
-      <main className="relative w-full max-w-[440px] min-h-screen bg-[#0b080e] sm:shadow-[0_0_90px_rgba(0,0,0,0.95)] sm:border-x sm:border-[#ff2d87]/20 flex flex-col z-10">
+      {/* Mobile Screen Container: Elegantly framed for smartphone proportions on desktop */}
+      <main className="relative w-full max-w-[440px] sm:max-w-[460px] md:max-w-[480px] min-h-screen bg-[#0b080e] sm:shadow-[0_0_90px_rgba(0,0,0,0.95)] sm:border-x sm:border-[#ff2d87]/20 flex flex-col z-10">
         {/* Minimalist Hero Section with perfectly centered photo */}
         <HeroSection />
 

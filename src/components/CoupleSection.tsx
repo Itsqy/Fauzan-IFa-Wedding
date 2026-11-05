@@ -26,58 +26,62 @@ export const CoupleSection: React.FC = () => {
           </p>
         </div>
 
-        {/* 2-Column Couple Cards with Centered Heart */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-center relative">
+        {/* Stacked Couple Cards with Centered Heart Divider */}
+        <div className="grid grid-cols-1 gap-5 items-center relative">
           {/* Mempelai Pria (Groom) */}
-          <div className="relative p-8 rounded-3xl bg-[#160f21]/80 backdrop-blur-md border border-[#ff2d87]/25 shadow-xl text-center group hover:border-[#ff2d87]/50 transition-all duration-300">
+          <div className="relative p-6 sm:p-7 rounded-3xl bg-[#160f21]/90 backdrop-blur-md border border-[#ff2d87]/25 shadow-xl text-center group hover:border-[#ff2d87]/50 transition-all duration-300">
             {/* Corner Ornamental Flourish */}
-            <div className="w-20 h-20 rounded-full bg-gradient-to-tr from-[#ff2d87]/20 to-transparent mx-auto mb-6 flex items-center justify-center border border-[#ff2d87]/40 shadow-[0_0_20px_rgba(255,45,135,0.3)]">
-              <span className="font-serif text-3xl font-bold text-white">F</span>
+            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-tr from-[#ff2d87]/20 to-transparent mx-auto mb-4 sm:mb-5 flex items-center justify-center border border-[#ff2d87]/40 shadow-[0_0_20px_rgba(255,45,135,0.3)]">
+              <span className="font-serif text-2xl sm:text-3xl font-bold text-white">F</span>
             </div>
 
-            <span className="text-xs font-sans uppercase tracking-[0.25em] text-[#ff70a6] block mb-2">
+            <span className="text-[11px] font-sans uppercase tracking-[0.25em] text-[#ff70a6] block mb-1.5">
               Mempelai Pria
             </span>
-            <h3 className="text-2xl sm:text-3xl font-serif font-bold text-white mb-3">
+            <h3 className="text-2xl sm:text-3xl font-serif font-bold text-white mb-2.5">
               Fauzan Mahfuzh
             </h3>
-            <div className="w-16 h-[1px] bg-[#ff2d87]/40 mx-auto mb-4" />
-            <p className="text-sm font-sans text-pink-100/80 leading-relaxed mb-1">
+            <div className="w-16 h-[1px] bg-[#ff2d87]/40 mx-auto mb-3.5" />
+            <p className="text-xs sm:text-sm font-sans text-pink-100/80 leading-relaxed mb-1">
               Putra Pertama dari:
             </p>
-            <p className="text-base font-serif text-white font-medium">
+            <p className="text-sm sm:text-base font-serif text-white font-medium">
               Bpk. H. Rahmat Hidayat &amp; Ibu Hj. Siti Aminah
             </p>
-            <p className="text-xs font-sans text-pink-300/60 mt-3">
+            <p className="text-[11px] sm:text-xs font-sans text-pink-300/60 mt-2">
               Kebayoran Baru, Jakarta Selatan
             </p>
           </div>
 
-          {/* Central Decorative Floating Heart Ring (Hidden on mobile) */}
-          <div className="hidden md:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-[#1b1029] border-2 border-[#ff2d87] items-center justify-center z-20 shadow-[0_0_25px_rgba(255,45,135,0.8)] neon-glow-pink-sm">
-            <Heart className="w-6 h-6 fill-[#ff2d87] text-[#ff2d87] animate-pulse" />
+          {/* Central Decorative Heart Divider */}
+          <div className="flex items-center justify-center my-1 z-20">
+            <div className="w-14 h-[1px] bg-gradient-to-r from-transparent to-[#ff2d87]/60" />
+            <div className="mx-3 w-10 h-10 rounded-full bg-[#1b1029] border border-[#ff2d87]/60 flex items-center justify-center shadow-[0_0_20px_rgba(255,45,135,0.6)]">
+              <Heart className="w-4 h-4 fill-[#ff2d87] text-[#ff2d87] animate-pulse" />
+            </div>
+            <div className="w-14 h-[1px] bg-gradient-to-l from-transparent to-[#ff2d87]/60" />
           </div>
 
           {/* Mempelai Wanita (Bride) */}
-          <div className="relative p-8 rounded-3xl bg-[#160f21]/80 backdrop-blur-md border border-[#ff2d87]/25 shadow-xl text-center group hover:border-[#ff2d87]/50 transition-all duration-300">
-            <div className="w-20 h-20 rounded-full bg-gradient-to-tr from-[#ff2d87]/20 to-transparent mx-auto mb-6 flex items-center justify-center border border-[#ff2d87]/40 shadow-[0_0_20px_rgba(255,45,135,0.3)]">
-              <span className="font-serif text-3xl font-bold text-white">I</span>
+          <div className="relative p-6 sm:p-7 rounded-3xl bg-[#160f21]/90 backdrop-blur-md border border-[#ff2d87]/25 shadow-xl text-center group hover:border-[#ff2d87]/50 transition-all duration-300">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-tr from-[#ff2d87]/20 to-transparent mx-auto mb-4 sm:mb-5 flex items-center justify-center border border-[#ff2d87]/40 shadow-[0_0_20px_rgba(255,45,135,0.3)]">
+              <span className="font-serif text-2xl sm:text-3xl font-bold text-white">I</span>
             </div>
 
-            <span className="text-xs font-sans uppercase tracking-[0.25em] text-[#ff70a6] block mb-2">
+            <span className="text-[11px] font-sans uppercase tracking-[0.25em] text-[#ff70a6] block mb-1.5">
               Mempelai Wanita
             </span>
-            <h3 className="text-2xl sm:text-3xl font-serif font-bold text-white mb-3">
+            <h3 className="text-2xl sm:text-3xl font-serif font-bold text-white mb-2.5">
               Isma Hifaf
             </h3>
-            <div className="w-16 h-[1px] bg-[#ff2d87]/40 mx-auto mb-4" />
-            <p className="text-sm font-sans text-pink-100/80 leading-relaxed mb-1">
+            <div className="w-16 h-[1px] bg-[#ff2d87]/40 mx-auto mb-3.5" />
+            <p className="text-xs sm:text-sm font-sans text-pink-100/80 leading-relaxed mb-1">
               Putri Kedua dari:
             </p>
-            <p className="text-base font-serif text-white font-medium">
+            <p className="text-sm sm:text-base font-serif text-white font-medium">
               Bpk. H. Ahmad Zulkarnain &amp; Ibu Hj. Maryam Hasan
             </p>
-            <p className="text-xs font-sans text-pink-300/60 mt-3">
+            <p className="text-[11px] sm:text-xs font-sans text-pink-300/60 mt-2">
               Rawamangun, Jakarta Timur
             </p>
           </div>
