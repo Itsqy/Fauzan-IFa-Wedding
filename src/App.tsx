@@ -86,12 +86,12 @@ export default function App() {
     }
   }, [wishes]);
 
-  // Handle Opening Envelope: starts audio at 43 seconds (Chorus: "Kasih, andai anganku bersuara...")
+  // Handle Opening Envelope: audio is pre-trimmed to start directly at Chorus ("Kasih, andai anganku bersuara...")
   const handleOpenEnvelope = () => {
     setIsEnvelopeOpen(false);
     if (audioRef.current) {
       try {
-        audioRef.current.currentTime = 43; // Detik ke-43 (Chorus Rapsodi)
+        audioRef.current.currentTime = 0;
         audioRef.current.play().then(() => {
           setIsPlayingMusic(true);
         }).catch(() => {
