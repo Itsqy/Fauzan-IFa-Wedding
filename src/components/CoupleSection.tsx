@@ -39,7 +39,7 @@ export const CoupleSection: React.FC = () => {
               Mempelai Pria
             </span>
             <h3 className="text-2xl sm:text-3xl font-serif font-bold text-white mb-3">
-              Muhammad Fauzan, S.T.
+              Fauzan Mahfuzh
             </h3>
             <div className="w-16 h-[1px] bg-[#ff2d87]/40 mx-auto mb-4" />
             <p className="text-sm font-sans text-pink-100/80 leading-relaxed mb-1">
@@ -68,7 +68,7 @@ export const CoupleSection: React.FC = () => {
               Mempelai Wanita
             </span>
             <h3 className="text-2xl sm:text-3xl font-serif font-bold text-white mb-3">
-              Nurul Ifatunnisa, S.Farm.
+              Isma Hifaf
             </h3>
             <div className="w-16 h-[1px] bg-[#ff2d87]/40 mx-auto mb-4" />
             <p className="text-sm font-sans text-pink-100/80 leading-relaxed mb-1">

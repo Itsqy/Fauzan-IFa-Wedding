@@ -13,7 +13,7 @@ import { GiftSection } from './components/GiftSection';
 import { WishesSection } from './components/WishesSection';
 import { RSVPModal } from './components/RSVPModal';
 import { OpeningEnvelopeModal } from './components/OpeningEnvelopeModal';
-import { NeonButterflyCanvas } from './components/NeonButterflyCanvas';
+import { NeonButterflyCanvas, triggerButterflyBurst } from './components/NeonButterflyCanvas';
 import { MusicPlayer } from './components/MusicPlayer';
 import { Footer } from './components/Footer';
 import { GuestWish } from './types/wedding';
@@ -166,6 +166,10 @@ export default function App() {
       <WishesSection
         wishes={wishes}
         onOpenRSVP={() => setIsRSVPModalOpen(true)}
+        onHoverRSVP={(e) => {
+          const rect = e.currentTarget.getBoundingClientRect();
+          triggerButterflyBurst(rect.left + rect.width / 2, rect.top + rect.height / 2, 16);
+        }}
       />
 
       {/* Closing Footer */}
@@ -182,7 +186,9 @@ export default function App() {
         isOpen={isRSVPModalOpen}
         onClose={() => setIsRSVPModalOpen(false)}
         onSubmitWish={handleAddWish}
-        onTriggerButterflyBurst={() => {}}
+        onTriggerButterflyBurst={() => {
+          triggerButterflyBurst(window.innerWidth / 2, window.innerHeight / 2, 40);
+        }}
       />
     </div>
   );

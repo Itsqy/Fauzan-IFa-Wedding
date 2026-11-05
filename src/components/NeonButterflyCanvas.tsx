@@ -5,6 +5,16 @@ interface NeonButterflyCanvasProps {
   isScrollingDown?: boolean;
 }
 
+export const triggerButterflyBurst = (x?: number, y?: number, count = 25) => {
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(
+      new CustomEvent('trigger-butterflies', {
+        detail: { x, y, count },
+      })
+    );
+  }
+};
+
 const NEON_PINK_COLORS = [
   '#ff2d87', // Electric neon pink
   '#ff1493', // Deep hot pink
@@ -71,7 +81,57 @@ export const NeonButterflyCanvas: React.FC<NeonButterflyCanvasProps> = () => {
     }
   };
 
-  // Scroll Down Detection: Trigger when user scrolls or gestures down
+  // Spawn a radiant burst of glowing butterflies from a specific point (e.g. envelope click or RSVP)
+  const spawnBurstButterflies = (count = 25, customX?: number, customY?: number) => {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    const originX = customX ?? width / 2;
+    const originY = customY ?? height / 2;
+
+    for (let i = 0; i < count; i++) {
+      // 360-degree radial trajectory with upward lift
+      const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.4;
+      const speed = 3.5 + Math.random() * 5.5;
+      const vx = Math.cos(angle) * speed;
+      const vy = Math.sin(angle) * speed - 1.2;
+      const flightAngle = Math.atan2(vy, vx);
+      const color = NEON_PINK_COLORS[Math.floor(Math.random() * NEON_PINK_COLORS.length)];
+
+      butterfliesRef.current.push({
+        id: Math.random(),
+        x: originX + (Math.random() - 0.5) * 30,
+        y: originY + (Math.random() - 0.5) * 30,
+        vx,
+        vy,
+        size: 15 + Math.random() * 18,
+        rotation: flightAngle + Math.PI / 2,
+        rotationSpeed: (Math.random() - 0.5) * 0.04,
+        wingPhase: Math.random() * Math.PI * 2,
+        wingSpeed: 0.35 + Math.random() * 0.25,
+        alpha: 1,
+        color,
+        glowColor: '#ff2d87',
+        life: 0,
+        maxLife: 200 + Math.random() * 120,
+        scale: 0.75 + Math.random() * 0.65,
+      });
+
+      // Stardust trail at burst origin
+      for (let s = 0; s < 2; s++) {
+        sparklesRef.current.push({
+          x: originX,
+          y: originY,
+          vx: Math.cos(angle) * (speed * 0.6) + (Math.random() - 0.5) * 2,
+          vy: Math.sin(angle) * (speed * 0.6) - 1 + (Math.random() - 0.5) * 2,
+          alpha: 1,
+          size: 2.5 + Math.random() * 3,
+          color: '#ff2d87',
+        });
+      }
+    }
+  };
+
+  // Scroll Down & Custom Event Detection
   useEffect(() => {
     lastScrollYRef.current = window.scrollY;
     let touchStartY = 0;
@@ -120,16 +180,24 @@ export const NeonButterflyCanvas: React.FC<NeonButterflyCanvasProps> = () => {
       }
     };
 
+    const handleCustomTrigger = (e: Event) => {
+      const customEvent = e as CustomEvent<{ x?: number; y?: number; count?: number }>;
+      const { x, y, count } = customEvent.detail || {};
+      spawnBurstButterflies(count ?? 25, x, y);
+    };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('wheel', handleWheel, { passive: true });
     window.addEventListener('touchstart', handleTouchStart, { passive: true });
     window.addEventListener('touchmove', handleTouchMove, { passive: true });
+    window.addEventListener('trigger-butterflies', handleCustomTrigger);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('wheel', handleWheel);
       window.removeEventListener('touchstart', handleTouchStart);
       window.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener('trigger-butterflies', handleCustomTrigger);
     };
   }, []);
 
@@ -312,7 +380,7 @@ export const NeonButterflyCanvas: React.FC<NeonButterflyCanvasProps> = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none z-40 w-full h-full"
+      className="fixed inset-0 pointer-events-none z-[60] w-full h-full"
       aria-hidden="true"
     />
   );

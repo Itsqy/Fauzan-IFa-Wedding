@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { triggerButterflyBurst } from './NeonButterflyCanvas';
 
 interface OpeningEnvelopeModalProps {
   isOpen: boolean;
@@ -13,13 +14,27 @@ export const OpeningEnvelopeModal: React.FC<OpeningEnvelopeModalProps> = ({
 
   if (!isOpen) return null;
 
-  const handleClickEnvelope = () => {
+  const handleClickEnvelope = (e: React.MouseEvent<HTMLDivElement>) => {
     if (isOpening) return;
     setIsOpening(true);
+
+    // Compute envelope center position for precise butterfly emission
+    const rect = e.currentTarget.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+
+    // Trigger instant radiant burst of neon butterflies
+    triggerButterflyBurst(centerX, centerY, 35);
+
+    // Follow-up burst wave as the envelope flap opens
+    setTimeout(() => {
+      triggerButterflyBurst(centerX, centerY - 40, 25);
+    }, 280);
+
     // Smooth opening transition before launching audio and revealing main page
     setTimeout(() => {
       onOpen();
-    }, 600);
+    }, 700);
   };
 
   return (
