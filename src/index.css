@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+html {
+  scroll-behavior: smooth;
+}
+
 @layer base {
   :root {
     --font-serif: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;

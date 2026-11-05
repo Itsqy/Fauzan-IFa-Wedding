@@ -89,6 +89,25 @@ export default function App() {
     }
   }, [wishes]);
 
+  // Handle Hash Navigation (scroll to anchor)
+  useEffect(() => {
+    const handleHash = () => {
+      if (typeof window !== 'undefined' && window.location.hash) {
+        const el = document.querySelector(window.location.hash);
+        if (el) {
+          el.scrollIntoView();
+        }
+      }
+    };
+    // Delay slightly to ensure children are mounted
+    const timer = setTimeout(handleHash, 100);
+    window.addEventListener('hashchange', handleHash);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('hashchange', handleHash);
+    };
+  }, []);
+
   // Handle Opening Envelope: audio is pre-trimmed to start directly at Chorus ("Kasih, andai anganku bersuara...")
   const handleOpenEnvelope = () => {
     setIsEnvelopeOpen(false);
@@ -178,7 +197,7 @@ export default function App() {
             ✦ Kedua Mempelai
           </a>
           <a href="#kisah" className="text-pink-200/70 hover:text-white hover:translate-x-1 transition-all py-1">
-            ✦ Kisah Perjalanan Cinta
+            ✦ Galeri Foto
           </a>
           <a href="#hadiah" className="text-pink-200/70 hover:text-white hover:translate-x-1 transition-all py-1">
             ✦ Amplop Digital &amp; Hadiah
@@ -231,7 +250,7 @@ export default function App() {
         {/* Kedua Mempelai (Couple Profiles) */}
         <CoupleSection />
 
-        {/* Kisah Perjalanan Cinta & Galeri Foto Lightbox */}
+        {/* Galeri Foto Lightbox (Minimalist & Photo-Focused) */}
         <LoveStoryGallery />
 
         {/* Amplop Digital & Kado Pernikahan */}
