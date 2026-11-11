@@ -1,38 +1,55 @@
 import React from 'react';
 import { Heart } from 'lucide-react';
+import { Gunungan, JavaneseCornerOrnament, AksaraJawaBadge, JavaneseDivider } from './JavaneseMotifs';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="relative py-16 px-5 bg-[#0e0906] border-t border-[#c59b6d]/20 text-center overflow-hidden">
-      <div className="max-w-3xl mx-auto relative z-10 flex flex-col items-center">
-        {/* Floating Butterfly Mini Accent */}
-        <div className="w-8 h-8 text-[#c59b6d] mb-3 gold-glow-sm animate-float-gentle">
-          <svg viewBox="0 0 100 100" fill="currentColor">
-            <path d="M50 50 C20 10 0 30 15 65 C30 90 45 60 50 50 C55 60 70 90 85 65 C100 30 80 10 50 50 Z" />
-          </svg>
+    <footer className="relative py-20 px-6 bg-gradient-to-b from-[#120c08] via-[#0a0604] to-[#050302] border-t border-[#c59b6d]/30 text-center overflow-hidden">
+      {/* Corner Ornaments */}
+      <JavaneseCornerOrnament position="top-left" size={60} opacity={0.25} />
+      <JavaneseCornerOrnament position="top-right" size={60} opacity={0.25} />
+
+      <div className="max-w-xl mx-auto relative z-10 flex flex-col items-center">
+        {/* Tancep Kayon - Sacred Closing Gunungan Symbol */}
+        <div className="relative mb-5 flex flex-col items-center">
+          <div className="absolute -inset-4 bg-[#c59b6d]/10 rounded-full blur-xl pointer-events-none" />
+          <Gunungan className="w-16 h-24 text-[#d4af37] drop-shadow-[0_0_15px_rgba(212,175,55,0.45)]" />
+          <span className="text-[10px] font-sans tracking-[0.35em] uppercase text-[#c59b6d]/80 mt-1">
+            Tancep Kayon · Pungkasan
+          </span>
         </div>
 
-        <h3 className="text-3xl sm:text-4xl font-serif font-bold text-white mb-2">
-          Ifa <span className="font-script text-[#c59b6d] text-4xl sm:text-5xl mx-1">&amp;</span> Fauzan
+        <AksaraJawaBadge aksara="ꦩꦠꦸꦂꦤꦸꦮꦸꦤ꧀" latin="Matur Nuwun" />
+
+        <h3 className="text-3xl sm:text-4xl font-serif font-bold text-white mt-4 mb-2">
+          Ifa <span className="font-script text-[#d4af37] text-4xl sm:text-5xl mx-1">&amp;</span> Fauzan
         </h3>
 
-        <p className="font-serif italic text-sm sm:text-base text-[#d6c5b3] max-w-lg mb-6 leading-relaxed">
-          &ldquo;Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu bagi kami berdua.&rdquo;
+        <JavaneseDivider className="w-48 my-4" />
+
+        <p className="font-serif italic text-sm sm:text-base text-[#e8dacb] max-w-md mb-4 leading-relaxed">
+          &ldquo;Matur nuwun sanget awit saking sih kawigatosan, karawuhan, saha donga pamuji panjenengan sedaya dhumateng kalih temanten.&rdquo;
         </p>
 
-        <p className="text-xs font-sans uppercase tracking-[0.2em] text-[#d4a373] mb-8 font-medium">
+        <p className="font-sans text-xs text-[#b89b80] max-w-md mb-6 leading-relaxed">
+          Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir serta memberikan doa restu.
+        </p>
+
+        <div className="inline-block px-4 py-1.5 rounded-full bg-[#1d130b] border border-[#c59b6d]/30 text-[11px] font-sans tracking-[0.2em] uppercase text-[#d4af37] mb-8 font-medium">
           Matur Nuwun · Jazakumullahu Khairan Katsiran
-        </p>
+        </div>
 
-        <div className="w-20 h-[1px] bg-white/10 mb-6" />
+        <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-[#c59b6d]/40 to-transparent mb-6" />
 
-        <p className="text-xs font-sans text-[#b39a82] flex items-center justify-center gap-1.5 flex-wrap">
-          <span>The Wedding of Ifa &amp; Fauzan</span>
+        <div className="text-xs font-sans text-[#8f7560] flex items-center justify-center gap-2 flex-wrap">
+          <span>Pawiwahan Dhaup Suci Ifa &amp; Fauzan</span>
           <span>·</span>
-          <span>12 Desember 2026</span>
+          <span>Sabtu Pon, 12 Desember 2026</span>
           <span>·</span>
-          <Heart className="w-3 h-3 text-[#c59b6d] fill-[#c59b6d]" />
-        </p>
+          <span>Semarang</span>
+          <span>·</span>
+          <Heart className="w-3.5 h-3.5 text-[#d4af37] fill-[#d4af37]" />
+        </div>
       </div>
     </footer>
   );

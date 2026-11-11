@@ -16,6 +16,7 @@ import { OpeningEnvelopeModal } from './components/OpeningEnvelopeModal';
 import { NeonButterflyCanvas, triggerButterflyBurst } from './components/NeonButterflyCanvas';
 import { MusicPlayer } from './components/MusicPlayer';
 import { Footer } from './components/Footer';
+import { Gunungan, BatikKawungBackground, AksaraJawaBadge } from './components/JavaneseMotifs';
 import { GuestWish } from './types/wedding';
 import { extractGuestNameFromUrl } from './utils/guest';
 
@@ -197,67 +198,77 @@ export default function App() {
       </div>
 
       {/* Elegant Desktop Left Sidebar (Only visible on wide xl/2xl screens where space permits) */}
-      <aside className="hidden xl:flex fixed left-6 2xl:left-16 top-1/2 -translate-y-1/2 flex-col max-w-[260px] 2xl:max-w-xs z-20 select-none max-h-[85vh] overflow-y-auto">
-        <div className="inline-flex items-center gap-2 text-[#d4a373] text-xs font-sans tracking-[0.3em] uppercase mb-3">
-          <Sparkles className="w-3.5 h-3.5 text-[#c59b6d]" />
-          <span>Undangan Pernikahan</span>
+      <aside className="hidden xl:flex fixed left-6 2xl:left-16 top-1/2 -translate-y-1/2 flex-col max-w-[270px] 2xl:max-w-xs z-20 select-none max-h-[85vh] overflow-y-auto">
+        <div className="mb-2">
+          <AksaraJawaBadge aksara="ꦱꦼꦫꦠ꧀ꦲꦸꦭꦼꦩ꧀" latin="Serat Ulem Pawiwahan" />
+        </div>
+
+        <div className="inline-flex items-center gap-2 text-[#d4a373] text-xs font-sans tracking-[0.25em] uppercase mb-1">
+          <Sparkles className="w-3.5 h-3.5 text-[#d4af37]" />
+          <span>Dhaup Suci Temanten</span>
         </div>
 
         <h1 className="font-ornate text-3xl 2xl:text-4xl text-white font-normal leading-snug mb-2">
-          Ifa <span className="font-script text-[#c59b6d] text-3xl 2xl:text-4xl mx-0.5">&amp;</span> Fauzan
+          Ifa <span className="font-script text-[#d4af37] text-3xl 2xl:text-4xl mx-0.5">&amp;</span> Fauzan
         </h1>
 
-        <div className="w-14 h-[1px] bg-[#c59b6d]/60 my-3.5" />
+        <div className="w-14 h-[1px] bg-gradient-to-r from-[#d4af37] to-transparent my-3" />
 
-        <p className="font-sans text-[11px] tracking-[0.25em] uppercase text-[#d6ab7b] mb-5 flex items-center gap-2">
-          <Calendar className="w-3.5 h-3.5 text-[#c59b6d]" />
-          <span>Sabtu, 12 Desember 2026</span>
+        <p className="font-sans text-[11px] tracking-[0.2em] uppercase text-[#d6ab7b] mb-4 flex items-center gap-2 font-medium">
+          <Calendar className="w-3.5 h-3.5 text-[#d4af37]" />
+          <span>Sabtu Pon, 12 Desember 2026</span>
         </p>
 
         <p className="font-serif italic text-xs 2xl:text-sm text-[#d6c5b3] leading-relaxed mb-6">
-          "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan-pasangan dari jenismu sendiri, supaya kamu merasa tenteram kepadanya, dan dijadikan-Nya di antaramu rasa kasih dan sayang."
+          &ldquo;Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan-pasangan dari jenismu sendiri, supaya kamu merasa tenteram kepadanya, dan dijadikan-Nya di antaramu rasa kasih dan sayang.&rdquo;
           <span className="block not-italic font-sans text-[10px] text-[#b39a82] mt-2">
             — QS. Ar-Rum: 21
           </span>
         </p>
 
-        {/* Quick Section Jump Navigation */}
-        <nav className="flex flex-col gap-2 pt-2 border-t border-white/10 text-xs font-sans">
-          <a href="#acara" className="text-[#d6c5b3] hover:text-[#e2c299] hover:translate-x-1 transition-all py-1">
-            ✦ Jadwal Rangkaian Acara
+        {/* Quick Section Jump Navigation with Javanese Terms */}
+        <nav className="flex flex-col gap-2 pt-2 border-t border-[#c59b6d]/20 text-xs font-sans">
+          <a href="#acara" className="text-[#d6c5b3] hover:text-[#e2c299] hover:translate-x-1 transition-all py-1 flex items-center gap-1.5">
+            <span className="text-[#d4af37]">✦</span>
+            <span>Runtutan Acara (Dhaup Suci &amp; Pahargyan)</span>
           </a>
-          <a href="#mempelai" className="text-[#d6c5b3] hover:text-[#e2c299] hover:translate-x-1 transition-all py-1">
-            ✦ Kedua Mempelai
+          <a href="#mempelai" className="text-[#d6c5b3] hover:text-[#e2c299] hover:translate-x-1 transition-all py-1 flex items-center gap-1.5">
+            <span className="text-[#d4af37]">✦</span>
+            <span>Penganten Putri &amp; Kakung</span>
           </a>
-          <a href="#kisah" className="text-[#d6c5b3] hover:text-[#e2c299] hover:translate-x-1 transition-all py-1">
-            ✦ Galeri Foto
+          <a href="#kisah" className="text-[#d6c5b3] hover:text-[#e2c299] hover:translate-x-1 transition-all py-1 flex items-center gap-1.5">
+            <span className="text-[#d4af37]">✦</span>
+            <span>Potret Kalih Temanten (Galeri)</span>
           </a>
-          <a href="#hadiah" className="text-[#d6c5b3] hover:text-[#e2c299] hover:translate-x-1 transition-all py-1">
-            ✦ Amplop Digital &amp; Hadiah
+          <a href="#hadiah" className="text-[#d6c5b3] hover:text-[#e2c299] hover:translate-x-1 transition-all py-1 flex items-center gap-1.5">
+            <span className="text-[#d4af37]">✦</span>
+            <span>Tandha Tresna (Amplop &amp; Kado)</span>
           </a>
-          <a href="#ucapan" className="text-[#d6c5b3] hover:text-[#e2c299] hover:translate-x-1 transition-all py-1">
-            ✦ Buku Tamu &amp; Ucapan
+          <a href="#ucapan" className="text-[#d6c5b3] hover:text-[#e2c299] hover:translate-x-1 transition-all py-1 flex items-center gap-1.5">
+            <span className="text-[#d4af37]">✦</span>
+            <span>Buku Tamu &amp; Donga Pangestu</span>
           </a>
         </nav>
 
-        <div className="mt-6 pt-4 border-t border-white/10">
+        <div className="mt-6 pt-4 border-t border-[#c59b6d]/20">
           <button
             onClick={() => setIsRSVPModalOpen(true)}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#c59b6d]/20 hover:bg-[#c59b6d] hover:text-[#120c08] border border-[#c59b6d]/50 text-white text-xs font-sans font-medium transition-all shadow-[0_0_15px_rgba(197,155,109,0.35)] cursor-pointer"
           >
-            <Heart className="w-3.5 h-3.5 fill-current text-[#c59b6d]" />
+            <Heart className="w-3.5 h-3.5 fill-current text-[#d4af37]" />
             <span>Konfirmasi Kehadiran (RSVP)</span>
           </button>
         </div>
       </aside>
 
-      {/* Elegant Desktop Right Decorative Motif */}
+      {/* Elegant Desktop Right Decorative Motif with Gunungan silhouette */}
       <aside className="hidden 2xl:flex fixed right-12 top-1/2 -translate-y-1/2 flex-col items-center gap-3 z-20 pointer-events-none select-none text-center">
-        <div className="w-[1px] h-20 bg-gradient-to-b from-transparent via-[#c59b6d]/40 to-[#c59b6d]" />
-        <span className="text-[10px] uppercase tracking-[0.3em] font-sans text-[#d4a373]/60 [writing-mode:vertical-lr]">
-          The Wedding of Ifa &amp; Fauzan
+        <div className="w-[1px] h-16 bg-gradient-to-b from-transparent via-[#c59b6d]/40 to-[#c59b6d]" />
+        <Gunungan className="w-8 h-12 text-[#d4af37]/60" />
+        <span className="text-[10px] uppercase tracking-[0.3em] font-sans text-[#d4a373]/70 [writing-mode:vertical-lr]">
+          Pawiwahan Ifa &amp; Fauzan
         </span>
-        <div className="w-[1px] h-20 bg-gradient-to-t from-transparent via-[#c59b6d]/40 to-[#c59b6d]" />
+        <div className="w-[1px] h-16 bg-gradient-to-t from-transparent via-[#c59b6d]/40 to-[#c59b6d]" />
       </aside>
 
       {/* Canvas for Delicate Small Brown Butterflies fluttering across screen */}
@@ -272,6 +283,8 @@ export default function App() {
 
       {/* Mobile Screen Container: Elegantly framed for smartphone proportions on desktop */}
       <main className="relative w-full max-w-[440px] sm:max-w-[460px] md:max-w-[480px] min-h-screen bg-[#120c08] sm:shadow-[0_0_90px_rgba(0,0,0,0.95)] sm:border-x sm:border-[#c59b6d]/20 flex flex-col z-10 overflow-x-hidden">
+        {/* Ambient Subtle Batik Kawung Background Texture */}
+        <BatikKawungBackground opacity={0.03} />
         {/* Minimalist Hero Section */}
         <HeroSection />
 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Camera, X, ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react';
+import { Gunungan, JavaneseDivider, BatikKawungBackground } from './JavaneseMotifs';
 
 interface GalleryPhoto {
   id: string;
@@ -12,13 +13,13 @@ const GALLERY_PHOTOS: GalleryPhoto[] = [
   {
     id: 'photo-1',
     url: '/assets/gallery/fauzan_ifa_1.jpg',
-    alt: 'Ifa & Fauzan - Potret Senyum Hangat',
+    alt: 'Ifa & Fauzan - Potret Senyum Hangat Busana Adat',
     aspectClass: 'col-span-1 aspect-[3/4]',
   },
   {
     id: 'photo-4',
     url: '/assets/gallery/fauzan_ifa_4.jpg',
-    alt: 'Ifa & Fauzan - Sorot Cahaya Studio',
+    alt: 'Ifa & Fauzan - Sorot Cahaya Klasik Studio',
     aspectClass: 'col-span-1 aspect-[3/4]',
   },
   {
@@ -30,7 +31,7 @@ const GALLERY_PHOTOS: GalleryPhoto[] = [
   {
     id: 'photo-5',
     url: '/assets/gallery/fauzan_ifa_5.jpg',
-    alt: 'Ifa & Fauzan - Busana Adat Klasik',
+    alt: 'Ifa & Fauzan - Busana Adat Klasik Jawa',
     aspectClass: 'col-span-1 aspect-[3/4]',
   },
   {
@@ -81,21 +82,28 @@ export const LoveStoryGallery: React.FC = () => {
   }, [selectedPhotoIndex]);
 
   return (
-    <section id="kisah" className="relative py-14 px-4 sm:px-5 bg-[#140e09] overflow-hidden">
-      {/* Ambient decorative glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-[#c59b6d]/10 rounded-full blur-3xl pointer-events-none" />
+    <section id="kisah" className="relative py-16 px-4 sm:px-5 bg-[#140e09] overflow-hidden">
+      {/* Ambient decorative glow & Batik Kawung Overlay */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-[#d4af37]/10 rounded-full blur-3xl pointer-events-none" />
+      <BatikKawungBackground opacity={0.045} />
 
       <div className="w-full relative z-10">
         {/* Minimalist Section Header */}
-        <div className="text-center mb-7">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#1e140c] border border-[#c59b6d]/30 text-[#e2c299] text-[10px] uppercase tracking-[0.25em] font-sans mb-2">
-            <Camera className="w-3 h-3 text-[#c59b6d]" />
-            <span>Momen Bahagia</span>
+        <div className="text-center mb-8">
+          <div className="mb-2">
+            <Gunungan size={32} className="text-[#d4af37] mx-auto opacity-80" />
           </div>
+
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#1e140c] border border-[#d4af37]/35 text-[#f5ecd8] text-[10px] uppercase tracking-[0.25em] font-sans mb-1.5">
+            <Camera className="w-3 h-3 text-[#d4af37]" />
+            <span>Momen Bahagia Kalih Temanten</span>
+          </div>
+
           <h2 className="text-2xl sm:text-3xl font-serif font-bold text-white tracking-tight">
-            Galeri Foto
+            Galeri Foto Prewedding
           </h2>
-          <div className="w-16 h-[1px] bg-gradient-to-r from-transparent via-[#c59b6d] to-transparent mx-auto mt-2" />
+
+          <JavaneseDivider className="my-2.5" />
         </div>
 
         {/* Minimalist Photo Grid */}
@@ -104,7 +112,7 @@ export const LoveStoryGallery: React.FC = () => {
             <div
               key={photo.id}
               onClick={() => openLightbox(index)}
-              className={`group relative rounded-2xl overflow-hidden cursor-pointer border border-[#c59b6d]/20 shadow-md hover:border-[#c59b6d]/70 transition-all duration-300 active:scale-[0.98] ${photo.aspectClass}`}
+              className={`group relative rounded-2xl overflow-hidden cursor-pointer border border-[#c59b6d]/30 shadow-md hover:border-[#d4af37]/80 transition-all duration-300 active:scale-[0.98] ${photo.aspectClass}`}
             >
               <img
                 src={photo.url}
@@ -114,9 +122,9 @@ export const LoveStoryGallery: React.FC = () => {
               />
 
               {/* Subtle hover overlay with zoom icon */}
-              <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <div className="w-9 h-9 rounded-full bg-black/55 backdrop-blur-sm border border-white/30 flex items-center justify-center text-white shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                  <ZoomIn className="w-4 h-4 text-[#c59b6d]" />
+              <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <div className="w-9 h-9 rounded-full bg-black/60 backdrop-blur-sm border border-[#d4af37]/50 flex items-center justify-center text-white shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                  <ZoomIn className="w-4 h-4 text-[#d4af37]" />
                 </div>
               </div>
             </div>
@@ -147,7 +155,7 @@ export const LoveStoryGallery: React.FC = () => {
               e.stopPropagation();
               prevPhoto();
             }}
-            className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/10 hover:bg-[#c59b6d]/80 text-white flex items-center justify-center transition-all cursor-pointer z-50 active:scale-90"
+            className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/10 hover:bg-[#d4af37]/80 text-white flex items-center justify-center transition-all cursor-pointer z-50 active:scale-90"
             aria-label="Foto Sebelumnya"
           >
             <ChevronLeft className="w-6 h-6" />
@@ -159,7 +167,7 @@ export const LoveStoryGallery: React.FC = () => {
               e.stopPropagation();
               nextPhoto();
             }}
-            className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/10 hover:bg-[#c59b6d]/80 text-white flex items-center justify-center transition-all cursor-pointer z-50 active:scale-90"
+            className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/10 hover:bg-[#d4af37]/80 text-white flex items-center justify-center transition-all cursor-pointer z-50 active:scale-90"
             aria-label="Foto Selanjutnya"
           >
             <ChevronRight className="w-6 h-6" />
@@ -170,7 +178,7 @@ export const LoveStoryGallery: React.FC = () => {
             onClick={(e) => e.stopPropagation()}
             className="max-w-2xl max-h-[85vh] flex flex-col items-center justify-center"
           >
-            <div className="relative rounded-2xl overflow-hidden border border-[#c59b6d]/40 shadow-[0_0_50px_rgba(197,155,109,0.35)]">
+            <div className="relative rounded-2xl overflow-hidden border border-[#d4af37]/50 shadow-[0_0_50px_rgba(212,175,55,0.4)]">
               <img
                 src={GALLERY_PHOTOS[selectedPhotoIndex].url}
                 alt={GALLERY_PHOTOS[selectedPhotoIndex].alt}
@@ -178,7 +186,7 @@ export const LoveStoryGallery: React.FC = () => {
               />
             </div>
 
-            {/* Minimalist Photo Indicator Dots */}
+            {/* Photo Indicator Dots */}
             <div className="mt-3.5 flex items-center gap-1.5">
               {GALLERY_PHOTOS.map((_, idx) => (
                 <button
@@ -186,7 +194,7 @@ export const LoveStoryGallery: React.FC = () => {
                   onClick={() => setSelectedPhotoIndex(idx)}
                   className={`h-1.5 rounded-full transition-all cursor-pointer ${
                     idx === selectedPhotoIndex
-                      ? 'w-6 bg-[#c59b6d] shadow-[0_0_8px_#c59b6d]'
+                      ? 'w-6 bg-[#d4af37] shadow-[0_0_8px_#d4af37]'
                       : 'w-1.5 bg-white/30 hover:bg-white/60'
                   }`}
                   aria-label={`Lihat foto ${idx + 1}`}
