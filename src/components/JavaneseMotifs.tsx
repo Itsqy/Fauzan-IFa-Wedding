@@ -332,10 +332,13 @@ export const JavaneseDivider: React.FC<{ className?: string }> = ({ className = 
  * Aksara Jawa Decorative Typography Badge
  */
 export const AksaraJawaBadge: React.FC<{
-  type: 'sugeng_rawuh' | 'dhaup_suci' | 'serat_ulem' | 'donga_pangestu' | 'matur_nuwun';
+  type?: 'sugeng_rawuh' | 'dhaup_suci' | 'serat_ulem' | 'donga_pangestu' | 'matur_nuwun';
+  aksara?: string;
+  latin?: string;
+  meaning?: string;
   className?: string;
-}> = ({ type, className = 'text-[#d4af37]' }) => {
-  const data = {
+}> = ({ type, aksara, latin, meaning, className = 'text-[#d4af37]' }) => {
+  const dictionary: Record<string, { aksara: string; latin: string; meaning: string }> = {
     sugeng_rawuh: {
       aksara: 'ꦱꦸꦒꦼꦁꦫꦮꦸꦃ',
       latin: 'Sugeng Rawuh',
@@ -361,16 +364,30 @@ export const AksaraJawaBadge: React.FC<{
       latin: 'Matur Nuwun',
       meaning: 'Terima Kasih',
     },
-  }[type];
+  };
+
+  const selected = (type && dictionary[type]) || {
+    aksara: aksara || '',
+    latin: latin || '',
+    meaning: meaning || '',
+  };
+
+  if (!selected.aksara && !selected.latin) {
+    return null;
+  }
 
   return (
     <div className={`inline-flex flex-col items-center select-none ${className}`}>
-      <span className="text-sm sm:text-base font-serif tracking-widest text-[#e8c872] opacity-90 drop-shadow-[0_0_8px_rgba(212,175,55,0.4)]">
-        {data.aksara}
-      </span>
-      <span className="text-[9px] font-sans tracking-[0.25em] uppercase text-[#c59b6d]/80 -mt-0.5">
-        {data.latin}
-      </span>
+      {selected.aksara && (
+        <span className="text-sm sm:text-base font-serif tracking-widest text-[#e8c872] opacity-90 drop-shadow-[0_0_8px_rgba(212,175,55,0.4)]">
+          {selected.aksara}
+        </span>
+      )}
+      {selected.latin && (
+        <span className="text-[9px] font-sans tracking-[0.25em] uppercase text-[#c59b6d]/80 -mt-0.5">
+          {selected.latin}
+        </span>
+      )}
     </div>
   );
 };
