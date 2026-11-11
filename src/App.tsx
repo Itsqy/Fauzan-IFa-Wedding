@@ -182,10 +182,10 @@ export default function App() {
 
   return (
     <div className="relative min-h-screen bg-[#0f0a07] text-[#fbf8f3] selection:bg-[#c59b6d] selection:text-[#120c08] font-sans antialiased overflow-x-hidden flex justify-center">
-      {/* Background Audio Player: JKT48 - Rapsodi (Saxophone Cover) */}
+      {/* Background Audio Player: JKT48 - Rapsodi (Saxophone Cover by Bagus Eko) */}
       <audio
         ref={audioRef}
-        src="/assets/aistudio/JKT48_-_Rapsodi__mp3.pm__dea445be.mp3"
+        src="/assets/aistudio/rapsodi_saxophone_cover.mp3"
         loop
         preload="auto"
       />
