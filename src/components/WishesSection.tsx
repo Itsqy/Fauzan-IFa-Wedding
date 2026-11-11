@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
-import { Heart, MessageSquareHeart, Check, Clock } from 'lucide-react';
+import { Heart, Check, Clock } from 'lucide-react';
 import { GuestWish } from '../types/wedding';
-import { Gunungan, JavaneseDivider, AksaraJawaBadge, BatikKawungBackground } from './JavaneseMotifs';
+import {
+  Gunungan,
+  WayangCharacter,
+  JavaneseDivider,
+  JavaneseCornerOrnament,
+  BatikKawungBackground,
+  BatikBorderStrip,
+} from './JavaneseMotifs';
 
 interface WishesSectionProps {
   wishes: GuestWish[];
@@ -27,7 +34,7 @@ export const WishesSection: React.FC<WishesSectionProps> = ({
     <section id="ucapan" className="relative py-20 md:py-28 px-5 bg-[#140e09] overflow-hidden">
       {/* Background Decor & Batik Kawung Overlay */}
       <div className="absolute top-1/2 left-1/4 w-72 h-72 bg-[#d4af37]/10 rounded-full blur-3xl pointer-events-none" />
-      <BatikKawungBackground opacity={0.045} />
+      <BatikKawungBackground opacity={0.055} />
 
       <div className="max-w-4xl mx-auto relative z-10">
         {/* Section Header */}
@@ -36,10 +43,8 @@ export const WishesSection: React.FC<WishesSectionProps> = ({
             <Gunungan size={36} className="text-[#d4af37] mx-auto opacity-85" />
           </div>
 
-          <AksaraJawaBadge type="donga_pangestu" className="mb-2" />
-
           <div className="text-[11px] uppercase tracking-[0.3em] font-sans text-[#d4a373] font-medium mb-1">
-            BUKU TAMU &amp; DONGA PANGESTU
+            BUKU TAMU &amp; DOA RESTU
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-white tracking-tight">
@@ -49,35 +54,54 @@ export const WishesSection: React.FC<WishesSectionProps> = ({
           <JavaneseDivider className="my-3.5" />
 
           <p className="text-sm font-sans text-[#d6c5b3] max-w-lg mx-auto leading-relaxed">
-            Matur nuwun sanget awit saking donga pamuji, panyengkuyung, sarta karawuhan panjenengan ingkang hangayom-ayomi adicara Ifa &amp; Fauzan.
+            Terima kasih atas doa restu, dukungan, serta kehadiran Bapak/Ibu/Saudara/i yang mengiringi kebahagiaan pernikahan Ifa &amp; Fauzan.
           </p>
         </div>
 
-        {/* Big RSVP CTA Box with Butterfly Hover Trigger */}
-        <div className="p-6 sm:p-8 rounded-3xl bg-[#1d130b]/92 backdrop-blur-md border border-[#c59b6d]/40 shadow-[0_0_35px_rgba(0,0,0,0.6)] text-center mb-10 flex flex-col items-center">
-          <h3 className="text-xl sm:text-2xl font-serif font-bold text-white mb-2">
-            Konfirmasi Karawuhan (RSVP)
-          </h3>
-          <p className="text-xs sm:text-sm font-sans text-[#d6c5b3] max-w-sm mb-5 leading-relaxed">
-            Kula suwun rawuhipun panjenengan kanthi ngisi konfirmasi rawuh sarta nyerat donga pangestu ing ngandhap punika.
-          </p>
+        {/* Big RSVP CTA Box with Wayang & Batik Frame */}
+        <div className="relative rounded-3xl bg-[#1d130b]/92 backdrop-blur-md border border-[#c59b6d]/40 shadow-[0_0_35px_rgba(0,0,0,0.6)] text-center mb-10 overflow-hidden">
+          <BatikBorderStrip />
 
-          <button
-            onClick={onOpenRSVP}
-            onMouseEnter={onHoverRSVP}
-            className="group relative inline-flex items-center justify-center gap-2.5 px-6 sm:px-8 py-3.5 rounded-full bg-gradient-to-r from-[#d4af37] via-[#b88628] to-[#7d441e] text-white font-sans font-semibold text-sm tracking-wide shadow-[0_0_25px_rgba(212,175,55,0.5)] hover:shadow-[0_0_35px_rgba(212,175,55,0.8)] hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer border border-[#fdf3dc]/40"
-          >
-            <Heart className="w-4 h-4 fill-white text-white group-hover:scale-125 transition-transform" />
-            <span>Isi Buku Tamu &amp; RSVP</span>
-          </button>
+          {/* Emerging Wayang Silhouettes on Left & Right Sides */}
+          <div className="absolute bottom-2 left-2 opacity-20 pointer-events-none animate-float-gentle">
+            <WayangCharacter variant="ksatria" facing="right" size={56} />
+          </div>
+          <div className="absolute bottom-2 right-2 opacity-20 pointer-events-none animate-float-gentle">
+            <WayangCharacter variant="putri" facing="left" size={56} />
+          </div>
+
+          <div className="relative p-6 sm:p-8 flex flex-col items-center">
+            <div className="absolute top-2 left-2">
+              <JavaneseCornerOrnament position="top-left" size={32} />
+            </div>
+            <div className="absolute top-2 right-2">
+              <JavaneseCornerOrnament position="top-right" size={32} />
+            </div>
+
+            <h3 className="text-xl sm:text-2xl font-serif font-bold text-white mb-2">
+              Konfirmasi Kehadiran (RSVP)
+            </h3>
+            <p className="text-xs sm:text-sm font-sans text-[#d6c5b3] max-w-sm mb-5 leading-relaxed">
+              Mohon kesediaan Bapak/Ibu/Saudara/i untuk mengisi konfirmasi kehadiran serta menuliskan doa restu di bawah ini.
+            </p>
+
+            <button
+              onClick={onOpenRSVP}
+              onMouseEnter={onHoverRSVP}
+              className="group relative inline-flex items-center justify-center gap-2.5 px-6 sm:px-8 py-3.5 rounded-full bg-gradient-to-r from-[#d4af37] via-[#b88628] to-[#7d441e] text-white font-sans font-semibold text-sm tracking-wide shadow-[0_0_25px_rgba(212,175,55,0.5)] hover:shadow-[0_0_35px_rgba(212,175,55,0.8)] hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer border border-[#fdf3dc]/40 z-10"
+            >
+              <Heart className="w-4 h-4 fill-white text-white group-hover:scale-125 transition-transform" />
+              <span>Isi Buku Tamu &amp; RSVP</span>
+            </button>
+          </div>
         </div>
 
         {/* Stats Strip & Filter Tabs */}
         <div className="flex flex-col gap-3.5 items-center mb-6">
           <div className="flex items-center gap-2.5 text-xs font-sans text-[#d6c5b3]">
-            <span>Total Donga: <strong className="text-white font-serif text-sm sm:text-base">{wishes.length}</strong></span>
+            <span>Total Doa: <strong className="text-white font-serif text-sm sm:text-base">{wishes.length}</strong></span>
             <span aria-hidden="true" className="text-[#d4af37]">·</span>
-            <span>Konfirmasi Rawuh: <strong className="text-[#f5ecd8] font-serif text-sm sm:text-base">{totalAttending}</strong></span>
+            <span>Konfirmasi Hadir: <strong className="text-[#f5ecd8] font-serif text-sm sm:text-base">{totalAttending}</strong></span>
           </div>
 
           {/* Interactive Filter Tabs */}
@@ -90,7 +114,7 @@ export const WishesSection: React.FC<WishesSectionProps> = ({
                   : 'text-[#d6c5b3] hover:text-white'
               }`}
             >
-              Sedaya ({wishes.length})
+              Semua ({wishes.length})
             </button>
             <button
               onClick={() => setFilter('hadir')}
@@ -100,7 +124,7 @@ export const WishesSection: React.FC<WishesSectionProps> = ({
                   : 'text-[#d6c5b3] hover:text-white'
               }`}
             >
-              Rawuh / Hadir ({totalAttending})
+              Hadir ({totalAttending})
             </button>
             <button
               onClick={() => setFilter('ragu')}
@@ -142,22 +166,22 @@ export const WishesSection: React.FC<WishesSectionProps> = ({
                     </div>
                   </div>
 
-                  {/* Attendance Badge */}
+                  {/* Attendance Badge in Indonesian */}
                   <div>
                     {isAttending && (
                       <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-[11px] font-sans font-medium text-emerald-300">
                         <Check className="w-3 h-3" />
-                        <span>Rawuh (Hadir)</span>
+                        <span>Hadir</span>
                       </span>
                     )}
                     {isDoubtful && (
                       <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-500/15 border border-amber-500/30 text-[11px] font-sans font-medium text-amber-300">
-                        <span>Taksih Ragu</span>
+                        <span>Masih Ragu</span>
                       </span>
                     )}
                     {!isAttending && !isDoubtful && (
                       <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-stone-500/15 border border-stone-500/30 text-[11px] font-sans font-medium text-stone-300">
-                        <span>Mboten Saged Rawuh</span>
+                        <span>Berhalangan Hadir</span>
                       </span>
                     )}
                   </div>

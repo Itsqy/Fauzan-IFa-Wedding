@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Calendar, Clock, MapPin, ExternalLink, CalendarPlus, Check, Video } from 'lucide-react';
-import { Gunungan, JavaneseCornerOrnament, JavaneseDivider, BatikKawungBackground } from './JavaneseMotifs';
+import {
+  JogloWayangDiorama,
+  JavaneseCornerOrnament,
+  JavaneseDivider,
+  BatikKawungBackground,
+  BatikBorderStrip,
+  Gunungan,
+} from './JavaneseMotifs';
 
 export const ScheduleSection: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState({
@@ -12,7 +19,7 @@ export const ScheduleSection: React.FC = () => {
   const [calendarSaved, setCalendarSaved] = useState(false);
 
   useEffect(() => {
-    // Target: Sabtu Pon, 12 Desember 2026 pukul 09:00 WIB
+    // Target: Sabtu, 12 Desember 2026 pukul 09:00 WIB
     const targetDate = new Date('2026-12-12T09:00:00+07:00').getTime();
 
     const updateCountdown = () => {
@@ -43,7 +50,7 @@ export const ScheduleSection: React.FC = () => {
       'VERSION:2.0',
       'PRODID:-//The Wedding of Ifa and Fauzan//ID',
       'BEGIN:VEVENT',
-      'SUMMARY:Pawiwahan Dhaup Suci Ifa & Fauzan',
+      'SUMMARY:Pernikahan Ifa & Fauzan',
       'DESCRIPTION:Undangan Pernikahan Ifa & Fauzan. Bertempat di Gedung Ramayana (Alva Edison Hall) PLN UPDL Semarang.',
       'LOCATION:Gedung Ramayana (Alva Edison Hall) PLN UPDL Semarang, Jl. Kedungmundu, Sambiroto, Kec. Tembalang, Kota Semarang',
       'DTSTART:20261212T020000Z',
@@ -56,7 +63,7 @@ export const ScheduleSection: React.FC = () => {
     const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
     const link = document.createElement('a');
     link.href = window.URL.createObjectURL(blob);
-    link.setAttribute('download', 'Pawiwahan_Ifa_lan_Fauzan.ics');
+    link.setAttribute('download', 'Pernikahan_Ifa_dan_Fauzan.ics');
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -69,34 +76,34 @@ export const ScheduleSection: React.FC = () => {
     <section id="acara" className="relative py-16 md:py-24 px-5 bg-[#120c08] overflow-hidden">
       {/* Ambient background glow & Batik Kawung Overlay */}
       <div className="absolute top-1/4 right-0 w-80 h-80 bg-[#d4af37]/10 rounded-full blur-3xl pointer-events-none" />
-      <BatikKawungBackground opacity={0.045} />
+      <BatikKawungBackground opacity={0.055} />
 
       <div className="max-w-4xl mx-auto relative z-10">
-        {/* Section Header */}
+        {/* Section Header with Javanese Rumah Joglo & Wayang Diorama */}
         <div className="text-center mb-12">
-          <div className="mb-2">
-            <Gunungan size={36} className="text-[#d4af37] mx-auto opacity-85" />
+          <div className="mb-3">
+            <JogloWayangDiorama size="sm" showWayang={true} />
           </div>
 
           <div className="text-[11px] uppercase tracking-[0.3em] font-sans text-[#d4a373] font-medium mb-1">
-            RUNDOWN DHAUP SUCI &amp; PAHARGYAN
+            RANGKAIAN ACARA PERNIKAHAN
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-white tracking-tight">
-            Wekdal &amp; Papan Pahargyan
+            Waktu &amp; Tempat Acara
           </h2>
 
           <JavaneseDivider className="my-3" />
 
-          <p className="text-xs sm:text-sm font-sans text-[#d6c5b3] max-w-lg mx-auto">
-            Kanthi panyuwun pandonga lan karawuhan panjenengan ing adicara Ijab Qobul sarta Pahargyan Temanten:
+          <p className="text-xs sm:text-sm font-sans text-[#d6c5b3] max-w-lg mx-auto leading-relaxed">
+            Dengan memohon rahmat dan ridho Allah SWT, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami:
           </p>
         </div>
 
         {/* Live Countdown Clock */}
         <div className="mb-10 max-w-lg mx-auto">
           <p className="text-xs font-sans tracking-[0.25em] uppercase text-[#d6ab7b] mb-3 text-center font-medium">
-            Ngetang Dinten Menuju Akad &amp; Resepsi
+            Menghitung Hari Menuju Akad &amp; Resepsi
           </p>
           <div className="grid grid-cols-4 gap-2 sm:gap-3">
             <div className="px-2 sm:px-3 py-2.5 sm:py-3 rounded-2xl bg-[#1d130b]/90 border border-[#c59b6d]/35 text-center shadow-lg">
@@ -104,7 +111,7 @@ export const ScheduleSection: React.FC = () => {
                 {String(timeLeft.days).padStart(2, '0')}
               </span>
               <span className="text-[10px] sm:text-xs font-sans tracking-wider uppercase text-[#d4af37]">
-                Dinten (Hari)
+                Hari
               </span>
             </div>
             <div className="px-2 sm:px-3 py-2.5 sm:py-3 rounded-2xl bg-[#1d130b]/90 border border-[#c59b6d]/35 text-center shadow-lg">
@@ -112,7 +119,7 @@ export const ScheduleSection: React.FC = () => {
                 {String(timeLeft.hours).padStart(2, '0')}
               </span>
               <span className="text-[10px] sm:text-xs font-sans tracking-wider uppercase text-[#d4af37]">
-                Tabuh (Jam)
+                Jam
               </span>
             </div>
             <div className="px-2 sm:px-3 py-2.5 sm:py-3 rounded-2xl bg-[#1d130b]/90 border border-[#c59b6d]/35 text-center shadow-lg">
@@ -134,119 +141,132 @@ export const ScheduleSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Event Cards */}
+        {/* Event Cards Framed with Batik & Javanese Ornaments */}
         <div className="grid grid-cols-1 gap-6 mb-8">
-          {/* Akad Nikah Card (Upacara Ijab Qobul) */}
-          <div className="relative p-6 sm:p-7 rounded-3xl bg-[#1d130b]/92 backdrop-blur-md border border-[#c59b6d]/35 shadow-xl flex flex-col justify-between overflow-hidden">
-            <div className="absolute top-2 right-2">
-              <JavaneseCornerOrnament position="top-right" size={32} />
+          {/* Akad Nikah Card */}
+          <div className="relative rounded-3xl bg-[#1d130b]/92 backdrop-blur-md border border-[#c59b6d]/40 shadow-xl flex flex-col justify-between overflow-hidden">
+            <BatikBorderStrip />
+
+            {/* Subtle Watermark Gunungan in Background Corner */}
+            <div className="absolute -bottom-4 -right-2 opacity-15 pointer-events-none">
+              <Gunungan size={95} glow={false} />
             </div>
 
-            <div>
-              <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
-                <span className="px-3.5 py-1 rounded-full bg-[#d4af37]/20 border border-[#d4af37]/45 text-[11px] font-sans font-medium text-[#f5ecd8] uppercase tracking-widest">
-                  Akad Nikah · Ijab Qobul
-                </span>
-                <span className="text-xs text-[#d4a373] font-sans italic">
-                  (Khusus keluarga dan kerabat dekat)
-                </span>
+            <div className="relative p-6 sm:p-7">
+              <div className="absolute top-2 right-2">
+                <JavaneseCornerOrnament position="top-right" size={34} />
               </div>
 
-              <h3 className="text-2xl font-serif font-bold text-white mb-5">
-                Upacara Ijab Qobul
-              </h3>
-
-              <div className="space-y-3.5 mb-6 text-sm font-sans text-[#f5efe6]">
-                <div className="flex items-start gap-3">
-                  <Calendar className="w-4 h-4 text-[#d4af37] shrink-0 mt-0.5" />
-                  <div>
-                    <p className="font-semibold text-white">Sabtu Pon, 12 Desember 2026</p>
-                    <p className="text-xs text-[#d4a373]">Dina Setu Pon</p>
-                  </div>
+              <div>
+                <div className="flex items-center justify-between mb-4 flex-wrap gap-2 pr-6">
+                  <span className="px-3.5 py-1 rounded-full bg-[#d4af37]/20 border border-[#d4af37]/45 text-[11px] font-sans font-medium text-[#f5ecd8] uppercase tracking-widest">
+                    Akad Nikah
+                  </span>
+                  <span className="text-xs text-[#d4a373] font-sans italic">
+                    (Khusus keluarga dan kerabat dekat)
+                  </span>
                 </div>
 
-                <div className="flex items-start gap-3">
-                  <Clock className="w-4 h-4 text-[#d4af37] shrink-0 mt-0.5" />
-                  <div>
-                    <p className="font-semibold text-white">09.00 WIB - Selesai</p>
-                    <p className="text-xs text-[#b39a82]">Tabuh sanga enjang dumugi purna</p>
-                  </div>
-                </div>
+                <h3 className="text-2xl font-serif font-bold text-white mb-5">
+                  Prosesi Akad Nikah
+                </h3>
 
-                <div className="flex items-start gap-3">
-                  <MapPin className="w-4 h-4 text-[#d4af37] shrink-0 mt-0.5" />
-                  <div>
-                    <p className="font-semibold text-white">Gedung Ramayana (Alva Edison Hall)</p>
-                    <p className="text-xs text-[#d6c5b3] mt-0.5">
-                      PLN UPDL Semarang (Jl. Kedungmundu, Sambiroto, Kec. Tembalang, Kota Semarang)
-                    </p>
+                <div className="space-y-3.5 mb-6 text-sm font-sans text-[#f5efe6]">
+                  <div className="flex items-start gap-3">
+                    <Calendar className="w-4 h-4 text-[#d4af37] shrink-0 mt-0.5" />
+                    <div>
+                      <p className="font-semibold text-white">Sabtu, 12 Desember 2026</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <Clock className="w-4 h-4 text-[#d4af37] shrink-0 mt-0.5" />
+                    <div>
+                      <p className="font-semibold text-white">09.00 WIB - Selesai</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <MapPin className="w-4 h-4 text-[#d4af37] shrink-0 mt-0.5" />
+                    <div>
+                      <p className="font-semibold text-white">Gedung Ramayana (Alva Edison Hall)</p>
+                      <p className="text-xs text-[#d6c5b3] mt-0.5">
+                        PLN UPDL Semarang (Jl. Kedungmundu, Sambiroto, Kec. Tembalang, Kota Semarang)
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div className="pt-3 border-t border-white/10 text-xs text-[#d4a373] font-sans flex items-center justify-between">
-              <span>Hanya untuk keluarga dan kerabat dekat</span>
-              <span className="font-serif italic text-[#c59b6d]">Brayat Ageng</span>
+              <div className="pt-3 border-t border-white/10 text-xs text-[#d4a373] font-sans">
+                <span>Hanya untuk keluarga dan kerabat dekat</span>
+              </div>
             </div>
           </div>
 
-          {/* Resepsi Card (Pahargyan Dhaup Temanten) */}
-          <div className="relative p-6 sm:p-7 rounded-3xl bg-[#1d130b]/92 backdrop-blur-md border border-[#c59b6d]/35 shadow-xl flex flex-col justify-between overflow-hidden">
-            <div className="absolute top-2 right-2">
-              <JavaneseCornerOrnament position="top-right" size={32} />
+          {/* Resepsi Card */}
+          <div className="relative rounded-3xl bg-[#1d130b]/92 backdrop-blur-md border border-[#c59b6d]/40 shadow-xl flex flex-col justify-between overflow-hidden">
+            <BatikBorderStrip />
+
+            {/* Subtle Watermark Gunungan in Background Corner */}
+            <div className="absolute -bottom-4 -right-2 opacity-15 pointer-events-none">
+              <Gunungan size={95} glow={false} />
             </div>
 
-            <div>
-              <div className="flex items-center justify-between mb-4">
-                <span className="px-3.5 py-1 rounded-full bg-[#d4af37]/20 border border-[#d4af37]/45 text-[11px] font-sans font-medium text-[#f5ecd8] uppercase tracking-widest">
-                  Resepsi · Pahargyan Temanten
-                </span>
-                <span className="text-xs text-[#d4a373] font-sans">
-                  Sesi Tamu Undangan
-                </span>
+            <div className="relative p-6 sm:p-7">
+              <div className="absolute top-2 right-2">
+                <JavaneseCornerOrnament position="top-right" size={34} />
               </div>
 
-              <h3 className="text-2xl font-serif font-bold text-white mb-5">
-                Walimatul 'Ursy &amp; Jamuan
-              </h3>
-
-              <div className="space-y-3.5 mb-6 text-sm font-sans text-[#f5efe6]">
-                <div className="flex items-start gap-3">
-                  <Calendar className="w-4 h-4 text-[#d4af37] shrink-0 mt-0.5" />
-                  <div>
-                    <p className="font-semibold text-white">Sabtu Pon, 12 Desember 2026</p>
-                    <p className="text-xs text-[#d4a373]">Dina Setu Pon</p>
-                  </div>
+              <div>
+                <div className="flex items-center justify-between mb-4 pr-6">
+                  <span className="px-3.5 py-1 rounded-full bg-[#d4af37]/20 border border-[#d4af37]/45 text-[11px] font-sans font-medium text-[#f5ecd8] uppercase tracking-widest">
+                    Resepsi Pernikahan
+                  </span>
+                  <span className="text-xs text-[#d4a373] font-sans">
+                    Tamu Undangan
+                  </span>
                 </div>
 
-                <div className="flex items-start gap-3">
-                  <Clock className="w-4 h-4 text-[#d4af37] shrink-0 mt-0.5" />
-                  <div>
-                    <p className="font-semibold text-white">12.00 - 13.00 WIB atau 13.00 - 14.00 WIB</p>
-                    <p className="text-xs text-[#b39a82]">Sesi Tamu Undangan (Siang)</p>
-                  </div>
-                </div>
+                <h3 className="text-2xl font-serif font-bold text-white mb-5">
+                  Resepsi &amp; Jamuan Pernikahan
+                </h3>
 
-                <div className="flex items-start gap-3">
-                  <MapPin className="w-4 h-4 text-[#d4af37] shrink-0 mt-0.5" />
-                  <div>
-                    <p className="font-semibold text-white">Gedung Ramayana (Alva Edison Hall)</p>
-                    <p className="text-xs text-[#d6c5b3] mt-0.5">
-                      PLN UPDL Semarang (Jl. Kedungmundu, Sambiroto, Kec. Tembalang, Kota Semarang)
-                    </p>
+                <div className="space-y-3.5 mb-6 text-sm font-sans text-[#f5efe6]">
+                  <div className="flex items-start gap-3">
+                    <Calendar className="w-4 h-4 text-[#d4af37] shrink-0 mt-0.5" />
+                    <div>
+                      <p className="font-semibold text-white">Sabtu, 12 Desember 2026</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <Clock className="w-4 h-4 text-[#d4af37] shrink-0 mt-0.5" />
+                    <div>
+                      <p className="font-semibold text-white">12.00 - 13.00 WIB atau 13.00 - 14.00 WIB</p>
+                      <p className="text-xs text-[#b39a82]">Sesi Tamu Undangan (Siang)</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <MapPin className="w-4 h-4 text-[#d4af37] shrink-0 mt-0.5" />
+                    <div>
+                      <p className="font-semibold text-white">Gedung Ramayana (Alva Edison Hall)</p>
+                      <p className="text-xs text-[#d6c5b3] mt-0.5">
+                        PLN UPDL Semarang (Jl. Kedungmundu, Sambiroto, Kec. Tembalang, Kota Semarang)
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div className="pt-3 border-t border-white/10 text-xs text-[#d4a373] font-sans flex items-center justify-between">
-              <span>Dress Code: Batik / Busana Adat Jawa / Formal Elegan</span>
-              <span className="font-serif italic text-[#c59b6d]">Busana Jawi</span>
+              <div className="pt-3 border-t border-white/10 text-xs text-[#d4a373] font-sans">
+                <span>Dress Code: Batik / Busana Adat / Formal Elegan</span>
+              </div>
             </div>
           </div>
 
-          {/* Live Streaming Card (From Brief) */}
+          {/* Live Streaming Card */}
           <div className="p-6 sm:p-7 rounded-3xl bg-gradient-to-r from-[#24170e] to-[#1a110a] border border-[#d4af37]/40 shadow-xl flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-4 text-center sm:text-left">
               <div className="w-12 h-12 rounded-2xl bg-red-600/20 border border-red-500/40 flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(239,68,68,0.3)]">
@@ -257,7 +277,7 @@ export const ScheduleSection: React.FC = () => {
                   Siaran Langsung (Live Streaming YouTube)
                 </h4>
                 <p className="text-xs font-sans text-[#d6c5b3] mt-0.5">
-                  Tumrap para kadang sutresna ingkang mboten saged rawuh kanthi langsung
+                  Bagi kerabat dan sahabat yang berhalangan hadir secara langsung
                 </p>
               </div>
             </div>
@@ -278,7 +298,7 @@ export const ScheduleSection: React.FC = () => {
         <div className="p-5 sm:p-6 rounded-3xl bg-[#1d130b]/90 backdrop-blur-md border border-[#c59b6d]/30 shadow-lg flex flex-col gap-4 text-center">
           <div>
             <h4 className="text-base sm:text-lg font-serif font-bold text-white mb-1">
-              Peta Lokasi &amp; Simpen Jadwal
+              Petunjuk Lokasi &amp; Simpan Jadwal
             </h4>
             <p className="text-xs font-sans text-[#d6c5b3] leading-relaxed max-w-sm mx-auto">
               Gedung Ramayana PLN UPDL Semarang, Sambiroto, Kec. Tembalang, Kota Semarang

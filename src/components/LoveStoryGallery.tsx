@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Camera, X, ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react';
-import { Gunungan, JavaneseDivider, BatikKawungBackground } from './JavaneseMotifs';
+import {
+  Gunungan,
+  JavaneseDivider,
+  BatikKawungBackground,
+  JavaneseCornerOrnament,
+} from './JavaneseMotifs';
 
 interface GalleryPhoto {
   id: string;
@@ -85,18 +90,18 @@ export const LoveStoryGallery: React.FC = () => {
     <section id="kisah" className="relative py-16 px-4 sm:px-5 bg-[#140e09] overflow-hidden">
       {/* Ambient decorative glow & Batik Kawung Overlay */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-[#d4af37]/10 rounded-full blur-3xl pointer-events-none" />
-      <BatikKawungBackground opacity={0.045} />
+      <BatikKawungBackground opacity={0.055} />
 
       <div className="w-full relative z-10">
-        {/* Minimalist Section Header */}
+        {/* Section Header */}
         <div className="text-center mb-8">
           <div className="mb-2">
-            <Gunungan size={32} className="text-[#d4af37] mx-auto opacity-80" />
+            <Gunungan size={34} className="text-[#d4af37] mx-auto opacity-85" />
           </div>
 
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#1e140c] border border-[#d4af37]/35 text-[#f5ecd8] text-[10px] uppercase tracking-[0.25em] font-sans mb-1.5">
             <Camera className="w-3 h-3 text-[#d4af37]" />
-            <span>Momen Bahagia Kalih Temanten</span>
+            <span>Momen Bahagia Kami</span>
           </div>
 
           <h2 className="text-2xl sm:text-3xl font-serif font-bold text-white tracking-tight">
@@ -106,13 +111,13 @@ export const LoveStoryGallery: React.FC = () => {
           <JavaneseDivider className="my-2.5" />
         </div>
 
-        {/* Minimalist Photo Grid */}
+        {/* Photo Grid with Subtle Javanese Corner Frames */}
         <div className="grid grid-cols-2 gap-3 sm:gap-3.5">
           {GALLERY_PHOTOS.map((photo, index) => (
             <div
               key={photo.id}
               onClick={() => openLightbox(index)}
-              className={`group relative rounded-2xl overflow-hidden cursor-pointer border border-[#c59b6d]/30 shadow-md hover:border-[#d4af37]/80 transition-all duration-300 active:scale-[0.98] ${photo.aspectClass}`}
+              className={`group relative rounded-2xl overflow-hidden cursor-pointer border border-[#c59b6d]/35 shadow-md hover:border-[#d4af37]/80 transition-all duration-300 active:scale-[0.98] ${photo.aspectClass}`}
             >
               <img
                 src={photo.url}
@@ -120,6 +125,18 @@ export const LoveStoryGallery: React.FC = () => {
                 loading="lazy"
                 className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
               />
+
+              {/* Subtle Corner Ornaments on Wide Landscape Frames */}
+              {photo.aspectClass.includes('col-span-2') && (
+                <>
+                  <div className="absolute top-1.5 left-1.5 z-10 opacity-75">
+                    <JavaneseCornerOrnament position="top-left" size={28} />
+                  </div>
+                  <div className="absolute top-1.5 right-1.5 z-10 opacity-75">
+                    <JavaneseCornerOrnament position="top-right" size={28} />
+                  </div>
+                </>
+              )}
 
               {/* Subtle hover overlay with zoom icon */}
               <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
