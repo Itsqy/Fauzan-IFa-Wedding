@@ -15,13 +15,14 @@ export const triggerButterflyBurst = (x?: number, y?: number, count = 25) => {
   }
 };
 
-const NEON_PINK_COLORS = [
-  '#ff2d87', // Electric neon pink
-  '#ff1493', // Deep hot pink
-  '#ff007f', // Rose neon
-  '#ff69b4', // Bright neon pink
-  '#ff70a6', // Soft blossom neon
-  '#ff3b9d', // Vibrant magenta-pink
+// Elegant Brown & Bronze-Gold palette ("Kupu-kupu cokelat - Cokelat Elegan")
+const BROWN_BUTTERFLY_COLORS = [
+  '#c59b6d', // Warm golden bronze
+  '#a56f3e', // Deep bronze amber
+  '#875128', // Rich chestnut brown
+  '#d6ab7b', // Soft honey gold
+  '#b37a44', // Classic copper bronze
+  '#e2c299', // Champagne caramel
 ];
 
 export const NeonButterflyCanvas: React.FC<NeonButterflyCanvasProps> = () => {
@@ -32,7 +33,7 @@ export const NeonButterflyCanvas: React.FC<NeonButterflyCanvasProps> = () => {
   const lastScrollYRef = useRef<number>(0);
   const lastScrollTimeRef = useRef<number>(0);
 
-  // Spawn butterflies from bottom-right flying towards top-left
+  // Spawn small brown butterflies from bottom-right flying towards top-left
   const spawnScrollButterflies = (count = 3) => {
     const width = window.innerWidth;
     const height = window.innerHeight;
@@ -42,12 +43,11 @@ export const NeonButterflyCanvas: React.FC<NeonButterflyCanvasProps> = () => {
       const originX = width - Math.random() * 120 + 20;
       const originY = height - Math.random() * 140 + 20;
 
-      // Trajectory towards Top-Left (Angle between ~215° and ~245° / radians: -2.3 to -2.7)
-      // Moving left (negative vx) and upward (negative vy)
-      const speed = 3.5 + Math.random() * 4.2;
-      const angle = -Math.PI * 0.72 + (Math.random() - 0.5) * 0.45; // ~ -130°
+      // Trajectory towards Top-Left
+      const speed = 2.8 + Math.random() * 3.4;
+      const angle = -Math.PI * 0.72 + (Math.random() - 0.5) * 0.45;
 
-      const color = NEON_PINK_COLORS[Math.floor(Math.random() * NEON_PINK_COLORS.length)];
+      const color = BROWN_BUTTERFLY_COLORS[Math.floor(Math.random() * BROWN_BUTTERFLY_COLORS.length)];
 
       butterfliesRef.current.push({
         id: Math.random(),
@@ -55,33 +55,34 @@ export const NeonButterflyCanvas: React.FC<NeonButterflyCanvasProps> = () => {
         y: originY,
         vx: Math.cos(angle) * speed,
         vy: Math.sin(angle) * speed,
-        size: 14 + Math.random() * 18,
-        rotation: angle + Math.PI / 2, // Orient butterfly head towards flight direction
+        // Dainty & delicate size ("kecilin")
+        size: 7 + Math.random() * 8,
+        rotation: angle + Math.PI / 2,
         rotationSpeed: (Math.random() - 0.5) * 0.04,
         wingPhase: Math.random() * Math.PI * 2,
-        wingSpeed: 0.32 + Math.random() * 0.18,
-        alpha: 1,
+        wingSpeed: 0.35 + Math.random() * 0.2,
+        alpha: 0.95,
         color,
-        glowColor: '#ff2d87',
+        glowColor: '#c59b6d',
         life: 0,
-        maxLife: 220 + Math.random() * 100,
-        scale: 0.65 + Math.random() * 0.65,
+        maxLife: 230 + Math.random() * 100,
+        scale: 0.55 + Math.random() * 0.45,
       });
 
-      // Neon pink glowing stardust trail at bottom right origin
+      // Warm golden bronze stardust trail
       sparklesRef.current.push({
         x: originX,
         y: originY,
-        vx: (Math.random() - 0.5) * 2 - 1.5,
-        vy: (Math.random() - 0.5) * 2 - 1.5,
-        alpha: 0.95,
-        size: 2 + Math.random() * 3,
-        color: '#ff2d87',
+        vx: (Math.random() - 0.5) * 2 - 1.2,
+        vy: (Math.random() - 0.5) * 2 - 1.2,
+        alpha: 0.9,
+        size: 1.5 + Math.random() * 2,
+        color: '#d6ab7b',
       });
     }
   };
 
-  // Spawn a radiant burst of glowing butterflies from a specific point (e.g. envelope click or RSVP)
+  // Spawn a radiant burst of small golden-brown butterflies
   const spawnBurstButterflies = (count = 25, customX?: number, customY?: number) => {
     const width = window.innerWidth;
     const height = window.innerHeight;
@@ -89,31 +90,31 @@ export const NeonButterflyCanvas: React.FC<NeonButterflyCanvasProps> = () => {
     const originY = customY ?? height / 2;
 
     for (let i = 0; i < count; i++) {
-      // 360-degree radial trajectory with upward lift
       const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.4;
-      const speed = 3.5 + Math.random() * 5.5;
+      const speed = 3.0 + Math.random() * 4.5;
       const vx = Math.cos(angle) * speed;
-      const vy = Math.sin(angle) * speed - 1.2;
+      const vy = Math.sin(angle) * speed - 1.0;
       const flightAngle = Math.atan2(vy, vx);
-      const color = NEON_PINK_COLORS[Math.floor(Math.random() * NEON_PINK_COLORS.length)];
+      const color = BROWN_BUTTERFLY_COLORS[Math.floor(Math.random() * BROWN_BUTTERFLY_COLORS.length)];
 
       butterfliesRef.current.push({
         id: Math.random(),
-        x: originX + (Math.random() - 0.5) * 30,
-        y: originY + (Math.random() - 0.5) * 30,
+        x: originX + (Math.random() - 0.5) * 25,
+        y: originY + (Math.random() - 0.5) * 25,
         vx,
         vy,
-        size: 15 + Math.random() * 18,
+        // Smaller refined size
+        size: 7.5 + Math.random() * 8,
         rotation: flightAngle + Math.PI / 2,
         rotationSpeed: (Math.random() - 0.5) * 0.04,
         wingPhase: Math.random() * Math.PI * 2,
-        wingSpeed: 0.35 + Math.random() * 0.25,
+        wingSpeed: 0.38 + Math.random() * 0.22,
         alpha: 1,
         color,
-        glowColor: '#ff2d87',
+        glowColor: '#c59b6d',
         life: 0,
-        maxLife: 200 + Math.random() * 120,
-        scale: 0.75 + Math.random() * 0.65,
+        maxLife: 200 + Math.random() * 110,
+        scale: 0.6 + Math.random() * 0.45,
       });
 
       // Stardust trail at burst origin
@@ -121,11 +122,11 @@ export const NeonButterflyCanvas: React.FC<NeonButterflyCanvasProps> = () => {
         sparklesRef.current.push({
           x: originX,
           y: originY,
-          vx: Math.cos(angle) * (speed * 0.6) + (Math.random() - 0.5) * 2,
-          vy: Math.sin(angle) * (speed * 0.6) - 1 + (Math.random() - 0.5) * 2,
+          vx: Math.cos(angle) * (speed * 0.55) + (Math.random() - 0.5) * 1.8,
+          vy: Math.sin(angle) * (speed * 0.55) - 0.8 + (Math.random() - 0.5) * 1.8,
           alpha: 1,
-          size: 2.5 + Math.random() * 3,
-          color: '#ff2d87',
+          size: 1.8 + Math.random() * 2.2,
+          color: '#e2c299',
         });
       }
     }
@@ -150,7 +151,7 @@ export const NeonButterflyCanvas: React.FC<NeonButterflyCanvasProps> = () => {
 
       // Scrolling DOWN
       if (deltaY > 1.5) {
-        const count = Math.min(5, Math.max(2, Math.floor(deltaY / 12)));
+        const count = Math.min(4, Math.max(2, Math.floor(deltaY / 12)));
         triggerSpawn(count);
       }
       lastScrollYRef.current = currentScrollY;
@@ -172,7 +173,6 @@ export const NeonButterflyCanvas: React.FC<NeonButterflyCanvasProps> = () => {
       if (e.touches[0]) {
         const currentTouchY = e.touches[0].clientY;
         const deltaTouch = touchStartY - currentTouchY;
-        // User swiping finger UP -> page scrolls DOWN
         if (deltaTouch > 5) {
           triggerSpawn(2);
           touchStartY = currentTouchY;
@@ -215,19 +215,18 @@ export const NeonButterflyCanvas: React.FC<NeonButterflyCanvasProps> = () => {
     handleResize();
     window.addEventListener('resize', handleResize);
 
-    // Draw single stylized neon butterfly with flapping 3D wings
+    // Draw single stylized delicate brown butterfly with flapping 3D wings
     const drawButterfly = (b: ButterflyParticle) => {
       ctx.save();
       ctx.translate(b.x, b.y);
       ctx.rotate(b.rotation);
       ctx.scale(b.scale, b.scale);
 
-      // Flapping calculation
       const flap = Math.cos(b.wingPhase);
       const wingSpread = Math.max(0.12, Math.abs(flap));
 
       ctx.shadowColor = b.glowColor;
-      ctx.shadowBlur = 16;
+      ctx.shadowBlur = 12;
       ctx.globalAlpha = Math.max(0, Math.min(1, b.alpha));
 
       // Left Wing
@@ -240,16 +239,16 @@ export const NeonButterflyCanvas: React.FC<NeonButterflyCanvasProps> = () => {
       ctx.bezierCurveTo(-b.size * 0.7, b.size * 0.3, -b.size * 1.1, b.size * 0.9, -b.size * 0.5, b.size * 1.1);
       ctx.bezierCurveTo(-b.size * 0.2, b.size * 0.8, -b.size * 0.1, b.size * 0.3, 0, 0);
 
-      const gradLeft = ctx.createRadialGradient(-b.size * 0.5, -b.size * 0.3, 2, -b.size * 0.5, -b.size * 0.3, b.size * 1.2);
-      gradLeft.addColorStop(0, '#ffffff');
+      const gradLeft = ctx.createRadialGradient(-b.size * 0.5, -b.size * 0.3, 1.5, -b.size * 0.5, -b.size * 0.3, b.size * 1.2);
+      gradLeft.addColorStop(0, '#fdf7ee');
       gradLeft.addColorStop(0.35, b.color);
-      gradLeft.addColorStop(0.8, '#ff2d87');
-      gradLeft.addColorStop(1, 'rgba(255, 45, 135, 0.45)');
+      gradLeft.addColorStop(0.8, '#875128');
+      gradLeft.addColorStop(1, 'rgba(135, 81, 40, 0.45)');
       ctx.fillStyle = gradLeft;
       ctx.fill();
 
-      ctx.strokeStyle = '#ffffff';
-      ctx.lineWidth = 1;
+      ctx.strokeStyle = 'rgba(255, 245, 230, 0.7)';
+      ctx.lineWidth = 0.8;
       ctx.stroke();
       ctx.restore();
 
@@ -263,35 +262,35 @@ export const NeonButterflyCanvas: React.FC<NeonButterflyCanvasProps> = () => {
       ctx.bezierCurveTo(-b.size * 0.7, b.size * 0.3, -b.size * 1.1, b.size * 0.9, -b.size * 0.5, b.size * 1.1);
       ctx.bezierCurveTo(-b.size * 0.2, b.size * 0.8, -b.size * 0.1, b.size * 0.3, 0, 0);
 
-      const gradRight = ctx.createRadialGradient(-b.size * 0.5, -b.size * 0.3, 2, -b.size * 0.5, -b.size * 0.3, b.size * 1.2);
-      gradRight.addColorStop(0, '#ffffff');
+      const gradRight = ctx.createRadialGradient(-b.size * 0.5, -b.size * 0.3, 1.5, -b.size * 0.5, -b.size * 0.3, b.size * 1.2);
+      gradRight.addColorStop(0, '#fdf7ee');
       gradRight.addColorStop(0.35, b.color);
-      gradRight.addColorStop(0.8, '#ff2d87');
-      gradRight.addColorStop(1, 'rgba(255, 45, 135, 0.45)');
+      gradRight.addColorStop(0.8, '#875128');
+      gradRight.addColorStop(1, 'rgba(135, 81, 40, 0.45)');
       ctx.fillStyle = gradRight;
       ctx.fill();
 
-      ctx.strokeStyle = '#ffffff';
-      ctx.lineWidth = 1;
+      ctx.strokeStyle = 'rgba(255, 245, 230, 0.7)';
+      ctx.lineWidth = 0.8;
       ctx.stroke();
       ctx.restore();
 
       // Butterfly Center Body
       ctx.beginPath();
-      ctx.ellipse(0, 0, b.size * 0.1, b.size * 0.45, 0, 0, Math.PI * 2);
-      ctx.fillStyle = '#ffffff';
-      ctx.shadowColor = '#ff2d87';
-      ctx.shadowBlur = 10;
+      ctx.ellipse(0, 0, b.size * 0.09, b.size * 0.45, 0, 0, Math.PI * 2);
+      ctx.fillStyle = '#f8ecd9';
+      ctx.shadowColor = '#c59b6d';
+      ctx.shadowBlur = 8;
       ctx.fill();
 
       // Antennae
       ctx.beginPath();
-      ctx.moveTo(-1, -b.size * 0.35);
+      ctx.moveTo(-0.8, -b.size * 0.35);
       ctx.quadraticCurveTo(-b.size * 0.3, -b.size * 0.8, -b.size * 0.45, -b.size * 0.9);
-      ctx.moveTo(1, -b.size * 0.35);
+      ctx.moveTo(0.8, -b.size * 0.35);
       ctx.quadraticCurveTo(b.size * 0.3, -b.size * 0.8, b.size * 0.45, -b.size * 0.9);
-      ctx.strokeStyle = '#ffffff';
-      ctx.lineWidth = 1;
+      ctx.strokeStyle = 'rgba(255, 245, 230, 0.8)';
+      ctx.lineWidth = 0.8;
       ctx.stroke();
 
       ctx.restore();
@@ -320,7 +319,7 @@ export const NeonButterflyCanvas: React.FC<NeonButterflyCanvasProps> = () => {
         ctx.save();
         ctx.globalAlpha = Math.max(0, sp.alpha);
         ctx.shadowColor = sp.color;
-        ctx.shadowBlur = 12;
+        ctx.shadowBlur = 10;
         ctx.fillStyle = sp.color;
         ctx.beginPath();
         ctx.arc(sp.x, sp.y, sp.size, 0, Math.PI * 2);
@@ -334,33 +333,30 @@ export const NeonButterflyCanvas: React.FC<NeonButterflyCanvasProps> = () => {
         b.life += dt;
         b.wingPhase += b.wingSpeed * dt;
 
-        // Flutter oscillation perpendicular to diagonal trajectory
-        const flutterOffset = Math.sin(b.wingPhase * 0.8) * 1.4;
-        b.x += (b.vx + flutterOffset * 0.6) * dt;
-        b.y += (b.vy - flutterOffset * 0.6) * dt;
+        const flutterOffset = Math.sin(b.wingPhase * 0.8) * 1.2;
+        b.x += (b.vx + flutterOffset * 0.5) * dt;
+        b.y += (b.vy - flutterOffset * 0.5) * dt;
 
-        // Drop stardust trails
+        // Drop warm golden stardust trails
         if (Math.random() < 0.28) {
           sparklesRef.current.push({
             x: b.x,
             y: b.y,
-            vx: (Math.random() - 0.5) * 1.2,
-            vy: (Math.random() - 0.5) * 1.2,
-            alpha: b.alpha * 0.8,
-            size: 1.5 + Math.random() * 2.5,
+            vx: (Math.random() - 0.5) * 1.0,
+            vy: (Math.random() - 0.5) * 1.0,
+            alpha: b.alpha * 0.75,
+            size: 1.2 + Math.random() * 1.8,
             color: b.color,
           });
         }
 
-        // Fade out as it nears top-left or end of life
         if (b.life > b.maxLife * 0.7) {
           b.alpha = 1 - (b.life - b.maxLife * 0.7) / (b.maxLife * 0.3);
         }
 
         drawButterfly(b);
 
-        // Remove if offscreen beyond top-left or died
-        const isOffscreen = b.x < -150 || b.y < -150 || b.x > canvas.width + 150 || b.y > canvas.height + 150;
+        const isOffscreen = b.x < -100 || b.y < -100 || b.x > canvas.width + 100 || b.y > canvas.height + 100;
         if (b.life >= b.maxLife || isOffscreen) {
           butterfliesRef.current.splice(i, 1);
         }

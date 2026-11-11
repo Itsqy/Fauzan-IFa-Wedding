@@ -12,37 +12,37 @@ const GALLERY_PHOTOS: GalleryPhoto[] = [
   {
     id: 'photo-1',
     url: '/assets/gallery/fauzan_ifa_1.jpg',
-    alt: 'Fauzan & Ifa - Potret Senyum Hangat',
+    alt: 'Ifa & Fauzan - Potret Senyum Hangat',
     aspectClass: 'col-span-1 aspect-[3/4]',
   },
   {
     id: 'photo-4',
     url: '/assets/gallery/fauzan_ifa_4.jpg',
-    alt: 'Fauzan & Ifa - Sorot Cahaya Studio',
+    alt: 'Ifa & Fauzan - Sorot Cahaya Studio',
     aspectClass: 'col-span-1 aspect-[3/4]',
   },
   {
     id: 'photo-2',
     url: '/assets/gallery/fauzan_ifa_2.jpg',
-    alt: 'Fauzan & Ifa - Dekorasi Bunga & Kursi Klasik',
+    alt: 'Ifa & Fauzan - Dekorasi Bunga & Kursi Klasik',
     aspectClass: 'col-span-2 aspect-[16/11]',
   },
   {
     id: 'photo-5',
     url: '/assets/gallery/fauzan_ifa_5.jpg',
-    alt: 'Fauzan & Ifa - Busana Adat Klasik',
+    alt: 'Ifa & Fauzan - Busana Adat Klasik',
     aspectClass: 'col-span-1 aspect-[3/4]',
   },
   {
     id: 'photo-6',
     url: '/assets/gallery/fauzan_ifa_6.jpg',
-    alt: 'Fauzan & Ifa - Set Studio Karpet Klasik',
+    alt: 'Ifa & Fauzan - Set Studio Karpet Klasik',
     aspectClass: 'col-span-1 aspect-[3/4]',
   },
   {
     id: 'photo-3',
     url: '/assets/gallery/fauzan_ifa_3.jpg',
-    alt: 'Fauzan & Ifa - Pose Anggun Duduk Lesehan',
+    alt: 'Ifa & Fauzan - Pose Anggun Duduk Lesehan',
     aspectClass: 'col-span-2 aspect-[16/11]',
   },
 ];
@@ -81,30 +81,30 @@ export const LoveStoryGallery: React.FC = () => {
   }, [selectedPhotoIndex]);
 
   return (
-    <section id="kisah" className="relative py-14 px-4 sm:px-5 bg-[#0e0915] overflow-hidden">
+    <section id="kisah" className="relative py-14 px-4 sm:px-5 bg-[#140e09] overflow-hidden">
       {/* Ambient decorative glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-[#ff2d87]/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-[#c59b6d]/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="w-full relative z-10">
         {/* Minimalist Section Header */}
         <div className="text-center mb-7">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#1b1028] border border-[#ff2d87]/30 text-pink-300 text-[10px] uppercase tracking-[0.25em] font-sans mb-2">
-            <Camera className="w-3 h-3 text-[#ff2d87]" />
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#1e140c] border border-[#c59b6d]/30 text-[#e2c299] text-[10px] uppercase tracking-[0.25em] font-sans mb-2">
+            <Camera className="w-3 h-3 text-[#c59b6d]" />
             <span>Momen Bahagia</span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-serif font-bold text-white tracking-tight">
             Galeri Foto
           </h2>
-          <div className="w-16 h-[1px] bg-gradient-to-r from-transparent via-[#ff2d87] to-transparent mx-auto mt-2" />
+          <div className="w-16 h-[1px] bg-gradient-to-r from-transparent via-[#c59b6d] to-transparent mx-auto mt-2" />
         </div>
 
-        {/* Minimalist Photo Grid (6 Photos: 4 Portrait & 2 Landscape in harmonic rhythm) */}
+        {/* Minimalist Photo Grid */}
         <div className="grid grid-cols-2 gap-3 sm:gap-3.5">
           {GALLERY_PHOTOS.map((photo, index) => (
             <div
               key={photo.id}
               onClick={() => openLightbox(index)}
-              className={`group relative rounded-2xl overflow-hidden cursor-pointer border border-[#ff2d87]/20 shadow-md hover:border-[#ff2d87]/70 transition-all duration-300 active:scale-[0.98] ${photo.aspectClass}`}
+              className={`group relative rounded-2xl overflow-hidden cursor-pointer border border-[#c59b6d]/20 shadow-md hover:border-[#c59b6d]/70 transition-all duration-300 active:scale-[0.98] ${photo.aspectClass}`}
             >
               <img
                 src={photo.url}
@@ -115,8 +115,8 @@ export const LoveStoryGallery: React.FC = () => {
 
               {/* Subtle hover overlay with zoom icon */}
               <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <div className="w-9 h-9 rounded-full bg-black/50 backdrop-blur-sm border border-white/30 flex items-center justify-center text-white shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                  <ZoomIn className="w-4 h-4 text-[#ff2d87]" />
+                <div className="w-9 h-9 rounded-full bg-black/55 backdrop-blur-sm border border-white/30 flex items-center justify-center text-white shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                  <ZoomIn className="w-4 h-4 text-[#c59b6d]" />
                 </div>
               </div>
             </div>
@@ -147,7 +147,7 @@ export const LoveStoryGallery: React.FC = () => {
               e.stopPropagation();
               prevPhoto();
             }}
-            className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/10 hover:bg-[#ff2d87]/80 text-white flex items-center justify-center transition-all cursor-pointer z-50 active:scale-90"
+            className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/10 hover:bg-[#c59b6d]/80 text-white flex items-center justify-center transition-all cursor-pointer z-50 active:scale-90"
             aria-label="Foto Sebelumnya"
           >
             <ChevronLeft className="w-6 h-6" />
@@ -159,7 +159,7 @@ export const LoveStoryGallery: React.FC = () => {
               e.stopPropagation();
               nextPhoto();
             }}
-            className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/10 hover:bg-[#ff2d87]/80 text-white flex items-center justify-center transition-all cursor-pointer z-50 active:scale-90"
+            className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/10 hover:bg-[#c59b6d]/80 text-white flex items-center justify-center transition-all cursor-pointer z-50 active:scale-90"
             aria-label="Foto Selanjutnya"
           >
             <ChevronRight className="w-6 h-6" />
@@ -170,7 +170,7 @@ export const LoveStoryGallery: React.FC = () => {
             onClick={(e) => e.stopPropagation()}
             className="max-w-2xl max-h-[85vh] flex flex-col items-center justify-center"
           >
-            <div className="relative rounded-2xl overflow-hidden border border-[#ff2d87]/40 shadow-[0_0_50px_rgba(255,45,135,0.35)]">
+            <div className="relative rounded-2xl overflow-hidden border border-[#c59b6d]/40 shadow-[0_0_50px_rgba(197,155,109,0.35)]">
               <img
                 src={GALLERY_PHOTOS[selectedPhotoIndex].url}
                 alt={GALLERY_PHOTOS[selectedPhotoIndex].alt}
@@ -186,14 +186,14 @@ export const LoveStoryGallery: React.FC = () => {
                   onClick={() => setSelectedPhotoIndex(idx)}
                   className={`h-1.5 rounded-full transition-all cursor-pointer ${
                     idx === selectedPhotoIndex
-                      ? 'w-6 bg-[#ff2d87] shadow-[0_0_8px_#ff2d87]'
+                      ? 'w-6 bg-[#c59b6d] shadow-[0_0_8px_#c59b6d]'
                       : 'w-1.5 bg-white/30 hover:bg-white/60'
                   }`}
                   aria-label={`Lihat foto ${idx + 1}`}
                 />
               ))}
             </div>
-            <span className="text-[11px] font-sans text-pink-200/60 mt-1">
+            <span className="text-[11px] font-sans text-[#d6c5b3] mt-1">
               {selectedPhotoIndex + 1} dari {GALLERY_PHOTOS.length}
             </span>
           </div>

@@ -7,6 +7,7 @@ interface RSVPModalProps {
   onClose: () => void;
   onSubmitWish: (newWish: Omit<GuestWish, 'id' | 'timestamp'>) => void;
   onTriggerButterflyBurst: () => void;
+  defaultGuestName?: string;
 }
 
 export const RSVPModal: React.FC<RSVPModalProps> = ({
@@ -14,13 +15,20 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({
   onClose,
   onSubmitWish,
   onTriggerButterflyBurst,
+  defaultGuestName,
 }) => {
-  const [name, setName] = useState('');
+  const [name, setName] = useState(() => (defaultGuestName && defaultGuestName !== 'Tamu Undangan' ? defaultGuestName : ''));
   const [status, setStatus] = useState<'hadir' | 'tidak_hadir' | 'ragu'>('hadir');
   const [attendeesCount, setAttendeesCount] = useState<number>(2);
   const [message, setMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
+
+  React.useEffect(() => {
+    if (defaultGuestName && defaultGuestName !== 'Tamu Undangan' && !name) {
+      setName(defaultGuestName);
+    }
+  }, [defaultGuestName]);
 
   if (!isOpen) return null;
 
@@ -29,13 +37,12 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({
     if (!name.trim()) return;
 
     setIsSubmitting(true);
-    // Simulate brief smooth submission
     setTimeout(() => {
       onSubmitWish({
         name: name.trim(),
         status,
         attendeesCount: status === 'hadir' ? attendeesCount : 0,
-        message: message.trim() || 'Selamat berbahagia untuk Fauzan & Ifa!',
+        message: message.trim() || 'Selamat berbahagia untuk Ifa & Fauzan!',
       });
 
       setIsSubmitting(false);
@@ -60,7 +67,7 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="relative w-full max-w-lg p-6 sm:p-8 rounded-3xl bg-[#170e24] border border-[#ff2d87]/40 shadow-[0_0_50px_rgba(255,45,135,0.35)] my-8"
+        className="relative w-full max-w-lg p-6 sm:p-8 rounded-3xl bg-[#1d130b] border border-[#c59b6d]/40 shadow-[0_0_50px_rgba(0,0,0,0.85)] my-8"
       >
         {/* Close Button */}
         <button
@@ -73,35 +80,35 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({
 
         {success ? (
           <div className="py-12 text-center flex flex-col items-center">
-            <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-[#ff2d87] to-[#ff007f] flex items-center justify-center mb-4 shadow-[0_0_30px_#ff2d87] animate-bounce">
+            <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-[#c59b6d] to-[#8c5326] flex items-center justify-center mb-4 shadow-[0_0_30px_#c59b6d] animate-bounce">
               <Check className="w-8 h-8 text-white" />
             </div>
             <h3 className="text-2xl font-serif font-bold text-white mb-2">
-              Terima Kasih Banyak!
+              Matur Nuwun!
             </h3>
-            <p className="text-sm font-sans text-pink-200/80 max-w-xs leading-relaxed">
-              Konfirmasi kehadiran dan untaian doa restu Anda telah tersimpan di Buku Tamu.
+            <p className="text-sm font-sans text-[#d6c5b3] max-w-xs leading-relaxed">
+              Konfirmasi kehadiran dan untaian doa restu Anda telah tersimpan di Buku Tamu Ifa &amp; Fauzan.
             </p>
           </div>
         ) : (
           <>
             <div className="text-center mb-6">
-              <div className="inline-flex items-center gap-1.5 text-xs uppercase tracking-widest text-pink-300 font-sans mb-1">
-                <Sparkles className="w-3.5 h-3.5 text-[#ff2d87]" />
+              <div className="inline-flex items-center gap-1.5 text-xs uppercase tracking-widest text-[#d4a373] font-sans mb-1">
+                <Sparkles className="w-3.5 h-3.5 text-[#c59b6d]" />
                 <span>Konfirmasi Kehadiran</span>
               </div>
               <h3 className="text-2xl sm:text-3xl font-serif font-bold text-white">
                 RSVP &amp; Doa Restu
               </h3>
-              <p className="text-xs sm:text-sm font-sans text-pink-200/70 mt-1">
-                Mohon konfirmasikan kehadiran Anda pada pernikahan Fauzan &amp; Ifa
+              <p className="text-xs sm:text-sm font-sans text-[#d6c5b3] mt-1">
+                Mohon konfirmasikan kehadiran Anda pada pernikahan Ifa &amp; Fauzan
               </p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-4">
               {/* Nama Tamu */}
               <div>
-                <label className="block text-xs font-sans font-medium text-pink-200 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-sans font-medium text-[#e2c299] uppercase tracking-wider mb-1.5">
                   Nama Lengkap *
                 </label>
                 <input
@@ -110,13 +117,13 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Contoh: Bpk. Hendra &amp; Keluarga"
-                  className="w-full px-4 py-3 rounded-xl bg-[#201431] border border-white/15 focus:border-[#ff2d87] focus:ring-1 focus:ring-[#ff2d87] text-white text-sm outline-none transition-all placeholder:text-pink-300/40"
+                  className="w-full px-4 py-3 rounded-xl bg-[#26190f] border border-white/15 focus:border-[#c59b6d] focus:ring-1 focus:ring-[#c59b6d] text-white text-sm outline-none transition-all placeholder:text-[#b39a82]"
                 />
               </div>
 
               {/* Status Kehadiran Radio Group */}
               <div>
-                <label className="block text-xs font-sans font-medium text-pink-200 uppercase tracking-wider mb-2">
+                <label className="block text-xs font-sans font-medium text-[#e2c299] uppercase tracking-wider mb-2">
                   Konfirmasi Kehadiran *
                 </label>
                 <div className="grid grid-cols-3 gap-2">
@@ -125,8 +132,8 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({
                     onClick={() => setStatus('hadir')}
                     className={`py-2.5 px-3 rounded-xl text-xs font-sans font-medium transition-all flex flex-col items-center justify-center gap-1 border cursor-pointer ${
                       status === 'hadir'
-                        ? 'bg-gradient-to-r from-[#ff2d87] to-[#e60067] border-white/40 text-white shadow-[0_0_15px_rgba(255,45,135,0.6)]'
-                        : 'bg-[#201431] border-white/10 text-pink-200/70 hover:border-white/30'
+                        ? 'bg-gradient-to-r from-[#c59b6d] to-[#8c5326] border-white/40 text-white shadow-[0_0_15px_rgba(197,155,109,0.5)]'
+                        : 'bg-[#26190f] border-white/10 text-[#d6c5b3] hover:border-white/30'
                     }`}
                   >
                     <Check className="w-4 h-4" />
@@ -138,8 +145,8 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({
                     onClick={() => setStatus('ragu')}
                     className={`py-2.5 px-3 rounded-xl text-xs font-sans font-medium transition-all flex flex-col items-center justify-center gap-1 border cursor-pointer ${
                       status === 'ragu'
-                        ? 'bg-[#ff70a6]/30 border-[#ff70a6] text-white shadow-[0_0_15px_rgba(255,112,166,0.4)]'
-                        : 'bg-[#201431] border-white/10 text-pink-200/70 hover:border-white/30'
+                        ? 'bg-[#c59b6d]/30 border-[#c59b6d] text-white shadow-[0_0_15px_rgba(197,155,109,0.3)]'
+                        : 'bg-[#26190f] border-white/10 text-[#d6c5b3] hover:border-white/30'
                     }`}
                   >
                     <span>Masih Ragu</span>
@@ -150,8 +157,8 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({
                     onClick={() => setStatus('tidak_hadir')}
                     className={`py-2.5 px-3 rounded-xl text-xs font-sans font-medium transition-all flex flex-col items-center justify-center gap-1 border cursor-pointer ${
                       status === 'tidak_hadir'
-                        ? 'bg-slate-700/60 border-slate-500 text-white'
-                        : 'bg-[#201431] border-white/10 text-pink-200/70 hover:border-white/30'
+                        ? 'bg-red-900/30 border-red-500/50 text-white'
+                        : 'bg-[#26190f] border-white/10 text-[#d6c5b3] hover:border-white/30'
                     }`}
                   >
                     <span>Tidak Hadir</span>
@@ -159,38 +166,46 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({
                 </div>
               </div>
 
-              {/* Jumlah Orang (Jika Hadir) */}
+              {/* Jumlah Kehadiran (Hanya jika hadir) */}
               {status === 'hadir' && (
                 <div>
-                  <label className="block text-xs font-sans font-medium text-pink-200 uppercase tracking-wider mb-1.5 flex items-center justify-between">
-                    <span>Jumlah Tamu yang Hadir</span>
-                    <span className="text-pink-300 font-semibold">{attendeesCount} Orang</span>
+                  <label className="block text-xs font-sans font-medium text-[#e2c299] uppercase tracking-wider mb-1.5 flex items-center justify-between">
+                    <span>Jumlah Hadir</span>
+                    <span className="text-[11px] text-[#c59b6d] font-normal flex items-center gap-1">
+                      <Users className="w-3.5 h-3.5" />
+                      {attendeesCount} Orang
+                    </span>
                   </label>
-                  <div className="flex items-center gap-3">
-                    <Users className="w-5 h-5 text-[#ff2d87]" />
-                    <input
-                      type="range"
-                      min={1}
-                      max={5}
-                      value={attendeesCount}
-                      onChange={(e) => setAttendeesCount(Number(e.target.value))}
-                      className="w-full accent-[#ff2d87] cursor-pointer"
-                    />
+                  <div className="flex items-center gap-2">
+                    {[1, 2, 3, 4].map((count) => (
+                      <button
+                        key={count}
+                        type="button"
+                        onClick={() => setAttendeesCount(count)}
+                        className={`flex-1 py-2 rounded-xl text-xs font-sans font-medium transition-all border cursor-pointer ${
+                          attendeesCount === count
+                            ? 'bg-[#c59b6d] border-[#c59b6d] text-[#120c08] font-bold shadow-sm'
+                            : 'bg-[#26190f] border-white/10 text-white hover:border-white/30'
+                        }`}
+                      >
+                        {count} Orang
+                      </button>
+                    ))}
                   </div>
                 </div>
               )}
 
-              {/* Ucapan & Doa Restu */}
+              {/* Doa & Ucapan */}
               <div>
-                <label className="block text-xs font-sans font-medium text-pink-200 uppercase tracking-wider mb-1.5">
-                  Untaian Doa &amp; Ucapan Selamat
+                <label className="block text-xs font-sans font-medium text-[#e2c299] uppercase tracking-wider mb-1.5">
+                  Doa &amp; Ucapan untuk Kedua Mempelai
                 </label>
                 <textarea
                   rows={3}
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  placeholder="Tuliskan ucapan selamat &amp; doa restu untuk kedua mempelai..."
-                  className="w-full px-4 py-3 rounded-xl bg-[#201431] border border-white/15 focus:border-[#ff2d87] focus:ring-1 focus:ring-[#ff2d87] text-white text-sm outline-none transition-all placeholder:text-pink-300/40 resize-none"
+                  placeholder="Tuliskan doa restu Anda untuk Ifa &amp; Fauzan..."
+                  className="w-full px-4 py-3 rounded-xl bg-[#26190f] border border-white/15 focus:border-[#c59b6d] focus:ring-1 focus:ring-[#c59b6d] text-white text-sm outline-none transition-all placeholder:text-[#b39a82] resize-none"
                 />
               </div>
 
@@ -198,10 +213,10 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-3.5 px-6 rounded-full bg-gradient-to-r from-[#ff2d87] via-[#ff1493] to-[#e60067] text-white font-sans font-semibold text-sm tracking-wide shadow-[0_0_25px_rgba(255,45,135,0.6)] hover:shadow-[0_0_40px_rgba(255,45,135,0.9)] hover:scale-[1.02] active:scale-95 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer mt-2"
+                className="w-full mt-2 py-3.5 px-6 rounded-xl bg-gradient-to-r from-[#c59b6d] via-[#b37a44] to-[#8c5326] text-white font-sans font-semibold text-sm tracking-wide shadow-[0_0_20px_rgba(197,155,109,0.5)] hover:shadow-[0_0_30px_rgba(197,155,109,0.8)] transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
               >
-                <Heart className="w-4 h-4 fill-white text-white" />
-                <span>{isSubmitting ? 'Mengirim Konfirmasi...' : 'Kirim Konfirmasi & Doa Restu'}</span>
+                <Heart className="w-4 h-4 fill-white" />
+                <span>{isSubmitting ? 'Mengirim...' : 'Kirim Konfirmasi & Doa Restu'}</span>
               </button>
             </form>
           </>
